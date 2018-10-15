@@ -9,3 +9,6 @@ target/
 .classpath
 .settings/*
 *.yml
+
+*/node_modules/
+*/yarn-error.log

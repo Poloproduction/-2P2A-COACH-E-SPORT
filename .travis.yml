@@ -1,3 +1,8 @@
 language: node_js
 node_js:
   - "9"
+
+script:
+  - cd nodejs/
+  - yarn
+  - yarn test

@@ -3,6 +3,6 @@ node_js:
   - "9"
 
 script:
-  - cd nodejs/
+  - cd base_nodejs/
   - yarn
   - yarn test

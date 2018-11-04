@@ -1,0 +1,42 @@
+{
+  "author": "Tim Tamimi (http://www.ttamimi.co.uk)",
+  "name": "Passport.js-Template",
+  "description": "TBC",
+  "version": "0.0.1",
+  "homepage": "",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "engines": {
+    "node": "8.12.0"
+  },
+  "dependencies": {
+    "bcrypt": "^2.0.1",
+    "body-parser": "^1.18.3",
+    "connect-flash": "^0.1.1",
+    "consolidate": "^0.15.1",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^4.0.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-flash": "0.0.2",
+    "express-session": "^1.15.6",
+    "html": "^1.0.0",
+    "jQuery": "^1.7.4",
+    "jquery": "^3.3.1",
+    "mongodb": "^3.0.7",
+    "node-gyp": "^3.6.2",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pg": "^7.6.0",
+    "pug": "^2.0.3",
+    "request": "^2.88.0",
+    "swig": "^1.4.2",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.5"
+  },
+  "main": "index.js",
+  "license": "MIT"
+}

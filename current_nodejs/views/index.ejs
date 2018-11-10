@@ -1,16 +1,70 @@
+<!-- 
+Login:
+login
+password
+remember
+
+Register:
+firstname
+lastname
+username
+password
+
+-->
+
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
-</head>
-<body>
-    <div>
-        CA MARCHE
-    </div>
-</body>
+    <head>
+        <title>My Fortnite Coach</title>
+        <link rel="stylesheet" href="../public/css/index.css" />
+        <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+    </head>
+
+    <body>
+        <div class="wrap">
+            <div class="box">
+                <div class="flex actions">
+                    <button id="login" class="active">J'ai un compte</button>
+                    <button id="register">Je m'inscris</button>
+                </div>
+                
+                <div class="form">
+                    <form method="post" action="/login" class="form" method="post">
+                        <label for="username">Login</label>
+                        <input type="text" id="username" name="username" />
+    
+                        <label for="username">Password</label>
+                        <input type="password" name="password" />
+                    
+                        <div class="flex buttons">
+                            <div>
+                                <input type="checkbox" name="remember" /> Remember me
+                            </div>
+                            <div>
+                                <button class="submit" type="submit">Sign in</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $('.actions button').click(function() {
+                if(!$(this).attr('id') == 'login' && !$(this).attr('id') == 'register') {
+                    return;
+                }
+
+                $('.actions button').toggleClass('active');
+                
+                $.ajax({
+                    url : $(this).attr('id') + '.html',
+                    type : 'GET',
+                    success : function(page) {
+                        $('.form').html(page);
+                    }
+                });
+            });
+        </script>
+    </body>
 </html>

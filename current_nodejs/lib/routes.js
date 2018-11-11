@@ -106,7 +106,7 @@ module.exports = function (app) {
 	
 	app.post('/login',	passport.authenticate('local', {
 		successRedirect: '/account',
-		failureRedirect: '/login',
+		failureRedirect: '/',
 		failureFlash: true
 		}), function(req, res) {
 		if (req.body.remember) {

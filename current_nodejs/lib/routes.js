@@ -81,7 +81,7 @@ module.exports = function (app) {
 			res.render('account', {title: "Account", userData: req.user, userData: req.user, messages: {danger: req.flash('danger'), warning: req.flash('warning'), success: req.flash('success')}});
 		}
 		else{
-			res.redirect('/login');
+			res.redirect('/');
 		}
 	});
 	

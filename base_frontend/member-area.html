@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Fortnite Coach</title>
+        <link rel="stylesheet" href="public/css/global.css" />
+        <link rel="stylesheet" href="public/css/member-area.css" />
+        <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+    </head>
+
+    <body>
+        <div class="wrap">
+            <!-- NAVIGATION -->
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="">Link 2</a></li>
+                    <li><a href="">Link 3</a></li>
+                    <li><a href="">Link 4</a></li>
+                    <!-- if user is logged
+                    <li class="right"><a href="">My account</a></li>
+                    -->
+                    <li class="active right"><a href="member-area.html">Sign in</a></li>
+                </ul>
+            </nav>
+            <!-- NAVIGATION -->
+
+            <div class="box">
+                <div class="flex actions">
+                    <button id="login" class="active">I have an account</button>
+                    <button id="register">I want to register</button>
+                </div>
+                
+                <div class="form">
+                    <form method="post" action="/login" class="form" method="post">
+                        <label for="username">Login</label>
+                        <input type="text" id="username" name="username" />
+    
+                        <label for="username">Password</label>
+                        <input type="password" name="password" />
+                    
+                        <div class="flex buttons">
+                            <div>
+                                <input type="checkbox" name="remember" /> Remember me
+                            </div>
+                            <div>
+                                <button class="submit" type="submit">Sign in</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            /* TODO Convert Ajax in NodeJs */
+            $('.actions button').click(function() {
+                if($(this).attr('id') != 'login' && $(this).attr('id') != 'register') {
+                    return;
+                }
+
+                if(!$(this).hasClass('active')) {
+                    $('.actions button').toggleClass('active');
+                    
+                    $.ajax({
+                        url : 'public/template/' + $(this).attr('id') + '.html',
+                        type : 'GET',
+                        success : function(page) {
+                            $('.form').html(page);
+                        }
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>

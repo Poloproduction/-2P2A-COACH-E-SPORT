@@ -1,17 +1,3 @@
-<!-- 
-Login:
-login
-password
-remember
-
-Join:
-firstname
-lastname
-username
-password
-
--->
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -51,22 +37,23 @@ password
         </div>
 
         <script>
+            /* TODO Convert Ajax in NodeJs */
             $('.actions button').click(function() {
-                 console.log($(this).attr('id'));
-                
-                if(!$(this).attr('id') == 'login' && !$(this).attr('id') == 'join') {
+                if($(this).attr('id') != 'login' && $(this).attr('id') != 'join') {
                     return;
                 }
 
-                $('.actions button').toggleClass('active');
-                
-                $.ajax({
-                    url : $(this).attr('id'),
-                    type : 'GET',
-                    success : function(page) {
-                        $('.form').html(page);
-                    }
-                });
+                if(!$(this).hasClass('active')) {
+                    $('.actions button').toggleClass('active');
+                    
+                    $.ajax({
+                        url : $(this).attr('id'),
+                        type : 'GET',
+                        success : function(page) {
+                            $('.form').html(page);
+                        }
+                    });
+                }
             });
         </script>
     </body>

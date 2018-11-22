@@ -60,3 +60,12 @@ nav ul li a {
 nav ul li a:hover {
     background: #192a55;
 }
+
+/* Responsive */
+@media only screen and (max-width: 1240px) {
+	.wrap {
+		width: 100%;
+		padding: 20px;
+		box-sizing: border-box;
+    }
+}

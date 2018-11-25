@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
-</head>
-<body>
-    Account
-    <a href="/logout">Déconnexion</a>
-</body>
+    <head>
+        <title>My Fortnite Coach</title>
+        <link rel="stylesheet" href="../public/css/global.css" />
+        <link rel="stylesheet" href="../public/css/index.css" />
+        <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+    </head>
+
+    <body>
+        <div class="wrap">
+            <!-- NAVIGATION -->
+            <%- include partials/navbar.ejs %>
+            <!-- NAVIGATION -->
+            <p>Hello <%= userData[0].firstname %> !</p>
+            <a href="/logout">Déconnexion</a>
+        </div>
+    </body>
 </html>

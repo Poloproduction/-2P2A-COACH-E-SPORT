@@ -66,7 +66,7 @@ module.exports = function (app) {
 						client.query('COMMIT')
 							console.log(result)
 							req.flash('success','User created.')
-							res.redirect('/login');
+							res.redirect('/member-area');
 							return;
 						}
 					});
@@ -110,7 +110,7 @@ module.exports = function (app) {
 	
 	app.post('/login',	passport.authenticate('local', {
 		successRedirect: '/account',
-		failureRedirect: '/',
+		failureRedirect: '/member-area',
 		failureFlash: true
 		}), function(req, res) {
 		if (req.body.remember) {
@@ -140,7 +140,7 @@ passport.use('local', new  LocalStrategy({passReqToCallback : true}, (req, usern
 					return done(err)
 				}	
 				if(result.rows[0] == null){
-					req.flash('danger', "Oops. Incorrect login details.");
+					req.flash('danger', "Incorrect login details.");
 					return done(null, false);
 				}
 				else{
@@ -153,7 +153,7 @@ passport.use('local', new  LocalStrategy({passReqToCallback : true}, (req, usern
 							return done(null, [{email: result.rows[0].email, firstname: result.rows[0].firstname}]);
 						}
 						else{
-							req.flash('danger', "Oops. Incorrect login details.");
+							req.flash('danger', "Incorrect login details.");
 							return done(null, false);
 						}
 					});

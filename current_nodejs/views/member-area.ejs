@@ -10,13 +10,13 @@
     <body>
         <div class="wrap">
             <!-- NAVIGATION -->
-            <%- include partials/navbar.ejs %>
+            <%- include partials/header.ejs %>
             <!-- NAVIGATION -->
 
             <div class="box">
                 <div class="flex actions">
                     <button id="login" class="active">I have an account</button>
-                    <button id="register">I want to register</button>
+                    <button id="join">I want to register</button>
                 </div>
                 
                 <div class="form">
@@ -43,7 +43,7 @@
         <script>
             /* TODO Convert Ajax in NodeJs */
             $('.actions button').click(function() {
-                if($(this).attr('id') != 'login' && $(this).attr('id') != 'register') {
+                if($(this).attr('id') != 'login' && $(this).attr('id') != 'join') {
                     return;
                 }
 

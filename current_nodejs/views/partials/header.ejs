@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Fortnite Coach</title>
+        <link rel="stylesheet" href="/public/css/global.css" />
+        <link rel="stylesheet" href="/public/css/index.css" />
+        <link rel="stylesheet" href="/public/css/slick.css" />
+        <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css' />
+        <link rel="stylesheet" href='/public/css/selectize.css' />
+
+        <link rel="stylesheet" href='/public/css/bootstrap.css' />
+        <link rel="stylesheet" href='/public/css/bootstrap-table.css' />
+
+        <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+    </head>
+
+    <body>
+        <%if (messages) { %>
+            <%if (messages.warning) { %>
+                <%if (messages.warning.length) { %>
+                    <div class="alert alert-warning alert-dismissable">
+                        <a data-dimiss="alert" aria-label="close">&times;</a>
+                        <strong><%= messages.warning %></strong>
+                    </div>
+                <% } %>
+            <% } %>
+            <%if (messages.danger) { %>
+                <%if (messages.danger.length) { %>
+                    <div class="alert alert-danger alert-dismissable">
+                        <a data-dimiss="alert" aria-label="close">&times;</a>
+                        <strong><%= messages.danger %></strong>
+                    </div>
+                <% } %>
+            <% } %>
+            <%if (messages.success) { %>
+                <%if (messages.success.length) { %>
+                    <div class="alert alert-success alert-dismissable">
+                        <a data-dimiss="alert" aria-label="close">&times;</a>
+                        <strong><%= messages.success %></strong>
+                    </div>
+                <% } %>
+            <% } %>
+        <% } %>
+
+        <nav>
+            <ul>
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="">Link 2</a></li>
+                <li><a href="">Link 3</a></li>
+                <%if (userData) { %>
+                    <li class="right"><a href="/account">My account</a></li>
+                <% } else { %>
+                    <li class="right"><a href="member-area">Sign in</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </body>
+</html>

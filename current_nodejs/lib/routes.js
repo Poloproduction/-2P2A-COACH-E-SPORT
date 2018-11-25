@@ -37,6 +37,10 @@ module.exports = function (app) {
 		console.log(req.user);
 	});
 
+	app.get('/member-area', function (req, res, next) {
+		res.render('member-area', {title: "Member area", userData: req.user, messages: {danger: req.flash('danger'), warning: req.flash('warning'), success: req.flash('success')}});
+	});
+
 	
 	app.get('/join', function (req, res, next) {
 		res.render('join', {title: "Join", userData: req.user, messages: {danger: req.flash('danger'), warning: req.flash('warning'), success: req.flash('success')}});
@@ -52,7 +56,7 @@ module.exports = function (app) {
 			await JSON.stringify(client.query('SELECT id FROM "users" WHERE "email"=$1', [req.body.username], function(err, result) {
 				if(result.rows[0]){
 					req.flash('warning', "This email address is already registered. <a href='/login'>Log in!</a>");
-					res.redirect('/join');
+					res.redirect('/');
 				}
 				else{
 					client.query('INSERT INTO users (id, "firstname", "lastname", email, password) VALUES ($1, $2, $3, $4, $5)', [uuidv4(), req.body.firstname, req.body.lastname, req.body.username, pwd], function(err, result) {
@@ -81,7 +85,7 @@ module.exports = function (app) {
 			res.render('account', {title: "Account", userData: req.user, userData: req.user, messages: {danger: req.flash('danger'), warning: req.flash('warning'), success: req.flash('success')}});
 		}
 		else{
-			res.redirect('/');
+			res.redirect('/member-area');
 		}
 	});
 	

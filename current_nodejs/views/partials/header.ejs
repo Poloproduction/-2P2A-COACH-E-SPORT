@@ -7,37 +7,29 @@
         <link rel="stylesheet" href="/public/css/slick.css" />
         <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css' />
         <link rel="stylesheet" href='/public/css/selectize.css' />
-
-        <link rel="stylesheet" href='/public/css/bootstrap.css' />
-        <link rel="stylesheet" href='/public/css/bootstrap-table.css' />
+        <link rel="stylesheet" href="/public/css/alert.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
         <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+        <script src="/public/js/alert.js"></script>
+
     </head>
 
     <body>
         <%if (messages) { %>
             <%if (messages.warning) { %>
                 <%if (messages.warning.length) { %>
-                    <div class="alert alert-warning alert-dismissable">
-                        <a data-dimiss="alert" aria-label="close">&times;</a>
-                        <strong><%= messages.warning %></strong>
-                    </div>
+                       <script>sendAlert('Warning', '<%= messages.warning %>', 'exclamation-triangle');</script>
                 <% } %>
             <% } %>
             <%if (messages.danger) { %>
                 <%if (messages.danger.length) { %>
-                    <div class="alert alert-danger alert-dismissable">
-                        <a data-dimiss="alert" aria-label="close">&times;</a>
-                        <strong><%= messages.danger %></strong>
-                    </div>
+                      <script>sendAlert('Information', '<%= messages.danger %>', 'exclamation-circle');</script>
                 <% } %>
             <% } %>
             <%if (messages.success) { %>
                 <%if (messages.success.length) { %>
-                    <div class="alert alert-success alert-dismissable">
-                        <a data-dimiss="alert" aria-label="close">&times;</a>
-                        <strong><%= messages.success %></strong>
-                    </div>
+                       <script>sendAlert('Success', '<%= messages.success %>', 'user-circle');</script>
                 <% } %>
             <% } %>
         <% } %>

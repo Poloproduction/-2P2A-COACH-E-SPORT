@@ -1,0 +1,16 @@
+<form method="post" action="/login">
+    <label for="username">Email</label>
+    <input type="text" id="username" name="username" />
+
+    <label for="username">Password</label>
+    <input type="password" name="password" />
+
+    <div class="flex buttons">
+        <div>
+            <input type="checkbox" name="remember" /> Remember me
+        </div>
+        <div>
+            <button class="submit" type="submit">Sign in</button>
+        </div>
+    </div>
+</form>

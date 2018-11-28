@@ -37,6 +37,10 @@ module.exports = function (app) {
 		console.log(req.user);
 	});
 
+	app.get('/member-area', function (req, res, next) {
+		res.render('member-area', {title: "Member area", userData: req.user, messages: {danger: req.flash('danger'), warning: req.flash('warning'), success: req.flash('success')}});
+	});
+
 	
 	app.get('/join', function (req, res, next) {
 		res.render('join', {title: "Join", userData: req.user, messages: {danger: req.flash('danger'), warning: req.flash('warning'), success: req.flash('success')}});
@@ -52,7 +56,7 @@ module.exports = function (app) {
 			await JSON.stringify(client.query('SELECT id FROM "users" WHERE "email"=$1', [req.body.username], function(err, result) {
 				if(result.rows[0]){
 					req.flash('warning', "This email address is already registered. <a href='/login'>Log in!</a>");
-					res.redirect('/join');
+					res.redirect('/');
 				}
 				else{
 					client.query('INSERT INTO users (id, "firstname", "lastname", email, password) VALUES ($1, $2, $3, $4, $5)', [uuidv4(), req.body.firstname, req.body.lastname, req.body.username, pwd], function(err, result) {
@@ -62,7 +66,7 @@ module.exports = function (app) {
 						client.query('COMMIT')
 							console.log(result)
 							req.flash('success','User created.')
-							res.redirect('/login');
+							res.redirect('/member-area');
 							return;
 						}
 					});
@@ -81,7 +85,7 @@ module.exports = function (app) {
 			res.render('account', {title: "Account", userData: req.user, userData: req.user, messages: {danger: req.flash('danger'), warning: req.flash('warning'), success: req.flash('success')}});
 		}
 		else{
-			res.redirect('/login');
+			res.redirect('/member-area');
 		}
 	});
 	
@@ -106,7 +110,7 @@ module.exports = function (app) {
 	
 	app.post('/login',	passport.authenticate('local', {
 		successRedirect: '/account',
-		failureRedirect: '/login',
+		failureRedirect: '/member-area',
 		failureFlash: true
 		}), function(req, res) {
 		if (req.body.remember) {
@@ -136,7 +140,7 @@ passport.use('local', new  LocalStrategy({passReqToCallback : true}, (req, usern
 					return done(err)
 				}	
 				if(result.rows[0] == null){
-					req.flash('danger', "Oops. Incorrect login details.");
+					req.flash('danger', "Incorrect login details.");
 					return done(null, false);
 				}
 				else{
@@ -149,7 +153,7 @@ passport.use('local', new  LocalStrategy({passReqToCallback : true}, (req, usern
 							return done(null, [{email: result.rows[0].email, firstname: result.rows[0].firstname}]);
 						}
 						else{
-							req.flash('danger', "Oops. Incorrect login details.");
+							req.flash('danger', "Incorrect login details.");
 							return done(null, false);
 						}
 					});

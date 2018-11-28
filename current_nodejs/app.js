@@ -28,7 +28,7 @@ app.use('/public', express.static(__dirname + '/public'));
 app.use(flash());
 app.use(session({secret: 'keyboard cat'}))
 app.use(bodyParser());
-app.set('view engine', 'pug');//PUG OR EJS
+app.set('view engine', 'ejs');//PUG OR EJS
 app.set('view options', { layout: false });
 
 

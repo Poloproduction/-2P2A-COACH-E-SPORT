@@ -1,4 +1,4 @@
-create table users
+CREATE TABLE users
 (
   id        uuid      not null
     constraint users_pkey

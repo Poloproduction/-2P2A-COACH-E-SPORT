@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-  - "9"
+  - "10"
 
 script:
   - cd current_nodejs/
-  - yarn
+  - npm
   - yarn test --forceExit

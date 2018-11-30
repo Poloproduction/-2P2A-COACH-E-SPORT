@@ -2,9 +2,17 @@
 <html>
     <head>
         <title>My Fortnite Coach</title>
-        <link rel="stylesheet" href="../public/css/global.css" />
-        <link rel="stylesheet" href="../public/css/index.css" />
-        <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+        <link rel="stylesheet" href="/public/css/global.css" />
+        <link rel="stylesheet" href="/public/css/account.css" />
+        <link rel="stylesheet" href="/public/css/slick.css" />
+        <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css' />
+        <link rel="stylesheet" href='/public/css/selectize.css' />
+        <link rel="stylesheet" href="/public/css/alert.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="icon" type="image/x-icon" href="/public/img/favicon.png">
+
+        <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+        <script src="/public/js/alert.js"></script>
     </head>
 
     <body>
@@ -12,8 +20,82 @@
             <!-- NAVIGATION -->
             <%- include partials/header.ejs %>
             <!-- NAVIGATION -->
-            <p>Hello <%= userData[0].firstname %> !</p>
-            <a href="/logout">Déconnexion</a>
+
+            <!-- If user don't have a team -->
+            <div id="team-buttons">
+                <a href="/create-team" class="button">Create a team</a>
+                <a href="/join-team" class="button">Join a team</a>
+            </div>
+            <!-- End If user don't have a team -->
+
+            <div class="box-container">
+                <div class="box box-30">
+                    <h2>Private profile</h2>
+
+                    <form method="post" action="">
+                        <label for="first-name">Firstname:</label>
+                        <input type="text" id="first-name" class="input" value="<%= userData[0].firstname %>" />
+
+                        <label for="last-name">Lastname:</label>
+                        <input type="text" id="last-name" class="input" value="<%= userData[0].lastname %>" /> <!-- To add -->
+
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" class="input" value="<%= userData[0].email %>" />
+
+                        <label for="birthday">Birthday:</label>
+                        <input type="date" id="birthday" class="input" value="<%= userData[0].birthday %>" />
+
+                        <button type="submit" class="button">Save</button>
+                    </form>
+                </div>
+
+                <div class="box box-65">
+                    <h2>Public informations</h2>
+
+                    <div class="avatar clearfix">
+                        <img src="/public/img/avatars/default.png" />
+                    </div>
+
+                    <form method="post" action="">                       
+                        <label for="i-am">I am:</label>
+                        <select class="input small-label">
+                            <option>Amateur</option>
+                            <option>Pro</option>
+                        </select>
+
+                        <label for="age">Age :</label>
+                        <input type="text" id="age" class="input small-label" value="" disabled /> <!-- Calculer avec le birthday -->
+
+                        <label for="city">Favorite city:</label>
+                        <input type="text" id="city" class="input small-label" value="" />
+
+                        <label for="weapon">Favorite weapon (it will be your avatar !):</label>
+                        <!-- TODO https://jqueryui.com/autocomplete/ -->
+                        <!-- On weapon change, it change the avatar -->
+                        <select class="input">
+                            <option>Lorem ipsum dolor</option>
+                            <option>Lorem ipsum dolor</option>
+                        </select>
+
+                        <label for="skin">My favorite skin:</label>
+                        <!-- TODO -->
+                        <select class="input">
+                            <option>Lorem ipsum dolor</option>
+                            <option>Lorem ipsum dolor</option>
+                        </select>
+
+                        <button type="submit" class="button">Save</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- If user has a team -->
+            <div class="box-container">
+                <div class="box">
+                    <h2>My team</h2>
+                </div>
+            </div>
+            <!-- End If user has a team -->
         </div>
     </body>
 </html>

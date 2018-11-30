@@ -8,9 +8,6 @@
     "start": "nodemon app.js",
     "test": "jest test"
   },
-  "engines": {
-    "node": "8.12.0"
-  },
   "dependencies": {
     "ajax": "^0.0.4",
     "bcrypt": "^2.0.1",

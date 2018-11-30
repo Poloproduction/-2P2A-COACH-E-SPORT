@@ -11,7 +11,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	background: url('../img/background.jpg') no-repeat center fixed;
+	background: url('/public/img/backgrounds/all.jpg') no-repeat center fixed;
 	background-size: cover;
 	font-family: 'BurbankBigCondensed';
     letter-spacing: 1px;
@@ -45,6 +45,10 @@ nav ul li {
 nav ul li.right {
     background: #520f72;
     float: right;
+}
+
+nav ul li.right a:hover {
+    background: #9324c7;
 }
 
 nav ul li.active {

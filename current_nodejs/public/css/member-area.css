@@ -1,3 +1,7 @@
+body {
+	background: url('/public/img/backgrounds/register.jpg');
+}
+
 .box {
 	background: rgba(156, 73, 0, 0.5);
 	width: 40%;

@@ -4,5 +4,5 @@ node_js:
 
 script:
   - cd current_nodejs/
-  - npm
+  - yarn
   - yarn test --forceExit

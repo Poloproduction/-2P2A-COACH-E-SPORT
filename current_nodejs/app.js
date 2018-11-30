@@ -34,7 +34,7 @@ app.set('view options', { layout: false });
 
 require('./lib/routes.js')(app);
 
-app.listen(PORT);
 console.log('Node listening on port %s', PORT);
+var server = app.listen(PORT);
 
-module.exports = app;
+module.exports = server;

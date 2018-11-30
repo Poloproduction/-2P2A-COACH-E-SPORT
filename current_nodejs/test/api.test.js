@@ -1,17 +1,15 @@
-import request from "supertest";
-import app from "../app";
+var app = require("../app");
+var request = require("supertest");
 
-describe("Test the post-example", () => {
-  test("It should return what is sent", async () => {
-    const expectedJson = {
-      email: "Foo",
-      hello: "world"
-    };
+describe("Test the login post", () => {
+  test("It should set a cookie in header", async () => {
 
     const response = await request(app)
-      .post("/post-example")
-      .send(expectedJson);
-    expect(response.statusCode).toBe(200);
-    expect(response.body).toEqual(expectedJson);
+      .post("/login")
+      .send(null);
+    expect(response.statusCode).toBe(302);
+    console.log(response.header["set-cookie"]);
+    expect(response.header["set-cookie"]).toBeDefined();
+    expect(response.header["set-cookie"]).toEqual(expect.arrayContaining([expect.stringMatching("connect.sid=")]));
   });
 });

@@ -1,10 +1,21 @@
-CREATE TABLE users
+create table users
 (
-    id uuid NOT NULL CONSTRAINT users_pkey PRIMARY KEY,
-    firstname CHAR(64),
-    lastname  CHAR(64),
-    email     CHAR(128),
-    password  CHAR(60)
+  id        uuid      not null
+    constraint users_pkey
+      primary key,
+  firstname char(64),
+  lastname  char(64),
+  email     char(128) not null,
+  password  char(60),
+  birthday  date,
+  iam       char(64) default 'Amateur'::bpchar,
+  pseudo    char(64),
+  city      char(64)
 );
 
-CREATE UNIQUE INDEX users_email_uindex ON public.users (email);
+alter table users
+  owner to postgres;
+
+create unique index users_email_uindex
+  on users (email);
+

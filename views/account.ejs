@@ -43,8 +43,7 @@
                         <input type="email" id="email" name="email" class="input" value="<%= userData[0].email %>" />
 
                         <label for="birthday">Birthday:</label>
-                        <input type="date" id="birthday" name="birthday" class="input" value="<%= userData[0].birthday %>" /> <!-- To fix -->
-
+                        <input type="date" id="birthday" name="birthday" class="input" value="<%= new Date(userData[0].birthday).toISOString().split('T')[0] %>" /> <!-- To fix -->
                         <button type="submit" class="button">Save</button>
                     </form>
                 </div>

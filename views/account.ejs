@@ -33,17 +33,17 @@
                     <h2>Private profile</h2>
 
                     <form method="post" action="">
-                        <label for="first-name">Firstname:</label>
-                        <input type="text" id="first-name" class="input" value="<%= userData[0].firstname %>" />
+                        <label for="firstname">Firstname:</label>
+                        <input type="text" id="firstname" name="firstname" class="input" value="<%= userData[0].firstname %>" />
 
-                        <label for="last-name">Lastname:</label>
-                        <input type="text" id="last-name" class="input" value="<%= userData[0].lastname %>" /> <!-- To add -->
+                        <label for="lastname">Lastname:</label>
+                        <input type="text" id="lastname" name="lastname" class="input" value="<%= userData[0].lastname %>" /> <!-- To add -->
 
                         <label for="email">Email:</label>
-                        <input type="email" id="email" class="input" value="<%= userData[0].email %>" />
+                        <input type="email" id="email" name="email" class="input" value="<%= userData[0].email %>" />
 
                         <label for="birthday">Birthday:</label>
-                        <input type="date" id="birthday" class="input" value="<%= userData[0].birthday %>" />
+                        <input type="date" id="birthday" name="birthday" class="input" value="<%= userData[0].birthday %>" />
 
                         <button type="submit" class="button">Save</button>
                     </form>
@@ -56,18 +56,20 @@
                         <img src="/public/img/avatars/default.png" />
                     </div>
 
-                    <form method="post" action="">                       
-                        <label for="i-am">I am:</label>
-                        <select class="input small-label">
-                            <option>Amateur</option>
-                            <option>Pro</option>
+                    <form method="post" action="">
+                        <label for="iam">I am:</label>
+                        <select id="iam" name="iam" class="input small-label" value="<%= userData[0].iam %>">
+                            <option value="Amateur">Amateur</option>
+                            <option value="Pro">Pro</option>
                         </select>
 
+                        <label for="pseudo">Pseudo :</label>
+                        <input type="text" id="pseudo" name="pseudo" class="input small-label" value="<%= userData[0].pseudo %>" />
                         <label for="age">Age :</label>
-                        <input type="text" id="age" class="input small-label" value="" disabled /> <!-- Calculer avec le birthday -->
+                        <input type="text" id="age" name="age" class="input small-label" value="" disabled /> <!-- Calculer avec le birthday -->
 
                         <label for="city">Favorite city:</label>
-                        <input type="text" id="city" class="input small-label" value="" />
+                        <input type="text" id="city" name="city" class="input small-label" value="<%= userData[0].city %>" />
 
                         <label for="weapon">Favorite weapon (it will be your avatar !):</label>
                         <!-- TODO https://jqueryui.com/autocomplete/ -->

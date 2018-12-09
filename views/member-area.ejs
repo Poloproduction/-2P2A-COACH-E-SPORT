@@ -27,46 +27,39 @@
                     <button id="join">I want to register</button>
                 </div>
                 
-                <div class="form">
-                    <form method="post" action="/login" class="form">
-                        <label for="username">Login</label>
-                        <input type="text" id="username" name="username" />
-    
-                        <label for="username">Password</label>
-                        <input type="password" name="password" />
+                <div id="member-area" class="form">
                     
-                        <div class="flex buttons">
-                            <div>
-                                <input type="checkbox" name="remember" /> Remember me
-                            </div>
-                            <div>
-                                <button class="submit" type="submit">Sign in</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
 
         <script>
             /* TODO Convert Ajax in NodeJs */
+            function loadPage(pageName) {
+                $.ajax({
+                    url : '../public/template/' + pageName + '.ejs',
+                    type : 'GET',
+                    success : function(page) {
+                        $('.form').html(page);
+                    }
+                });
+            }
+
             $('.actions button').click(function() {
-                if($(this).attr('id') != 'login' && $(this).attr('id') != 'join') {
+                var $buttonId = $(this).attr('id');
+
+                if($buttonId != 'login' && $buttonId != 'join') {
                     return;
                 }
 
                 if(!$(this).hasClass('active')) {
                     $('.actions button').toggleClass('active');
                     
-                    $.ajax({
-                        url : '../public/template/' + $(this).attr('id') + '.ejs',
-                        type : 'GET',
-                        success : function(page) {
-                            $('.form').html(page);
-                        }
-                    });
+                    loadPage($buttonId);
                 }
             });
+
+            loadPage('login');
         </script>
     </body>
 </html>

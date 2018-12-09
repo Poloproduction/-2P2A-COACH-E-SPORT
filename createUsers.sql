@@ -10,7 +10,8 @@ create table users
   birthday  date,
   iam       char(64) default 'Amateur'::bpchar,
   pseudo    char(64),
-  city      char(64)
+  city      char(64),
+  teamname  char(64)
 );
 
 alter table users
@@ -18,4 +19,3 @@ alter table users
 
 create unique index users_email_uindex
   on users (email);
-

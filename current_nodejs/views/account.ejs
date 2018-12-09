@@ -21,14 +21,12 @@
             <%- include partials/header.ejs %>
             <!-- NAVIGATION -->
 
-            <!-- If user doesn't have a team -->
             <%if (userData[0].teamname == null) { %>
                 <div id="team-buttons">
                     <a href="/create-team" class="button">Create a team</a>
                     <a href="/join-team" class="button">Join a team</a>
                 </div>
             <% } %>
-            <!-- End if user doestn't have team -->
 
             <div class="box-container">
                 <div class="box box-30">
@@ -39,7 +37,7 @@
                         <input type="text" id="firstname" name="firstname" class="input" value="<%= userData[0].firstname %>" />
 
                         <label for="lastname">Lastname:</label>
-                        <input type="text" id="lastname" name="lastname" class="input" value="<%= userData[0].lastname %>" /> <!-- To add -->
+                        <input type="text" id="lastname" name="lastname" class="input" value="<%= userData[0].lastname %>" />
 
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" class="input" value="<%= userData[0].email %>" />
@@ -92,7 +90,6 @@
                 </div>
             </div>
             
-            <!-- If user has a team -->
             <%if (userData[0].teamname) { %>
                 <div class="box-container">
                     <div class="box">
@@ -100,7 +97,6 @@
                     </div>
                 </div>
             <% } %>
-            <!-- End If user has a team -->
         </div>
     </body>
 </html>

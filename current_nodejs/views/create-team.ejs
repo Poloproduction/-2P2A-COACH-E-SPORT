@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Fortnite Coach</title>
+        <link rel="stylesheet" href="/public/css/global.css" />
+        <link rel="stylesheet" href="/public/css/member-area.css" />
+        <link rel="stylesheet" href="/public/css/slick.css" />
+        <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css' />
+        <link rel="stylesheet" href='/public/css/selectize.css' />
+        <link rel="stylesheet" href="/public/css/alert.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="icon" type="image/x-icon" href="/public/img/favicon.png">
+
+        <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+        <script src="/public/js/alert.js"></script>
+    </head>
+
+    <body>
+        <div class="wrap">
+            <!-- NAVIGATION -->
+            <%- include partials/header.ejs %>
+            <!-- NAVIGATION -->
+        
+        <div class="form">
+            <form method="post" action="">
+                <p>
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" id="name" />
+                    
+                    <br />
+                    <label for="nbmembers">Number of members:</label>
+                    <select name="nbmembers" id="nbmembers">
+                        <option value="">--Please choose an option--</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+
+                    <input type="submit" value="Valider">
+                    
+                </p>
+             </form>
+        </div>
+    </body>
+</html>

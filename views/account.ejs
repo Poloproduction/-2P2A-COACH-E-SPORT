@@ -21,12 +21,14 @@
             <%- include partials/header.ejs %>
             <!-- NAVIGATION -->
 
-            <!-- If user don't have a team -->
-            <div id="team-buttons">
-                <a href="/create-team" class="button">Create a team</a>
-                <a href="/join-team" class="button">Join a team</a>
-            </div>
-            <!-- End If user don't have a team -->
+            <!-- If user doesn't have a team -->
+            <%if (userData[0].teamname == null) { %>
+                <div id="team-buttons">
+                    <a href="/create-team" class="button">Create a team</a>
+                    <a href="/join-team" class="button">Join a team</a>
+                </div>
+            <% } %>
+            <!-- End if user doestn't have team -->
 
             <div class="box-container">
                 <div class="box box-30">
@@ -89,13 +91,15 @@
                     </form>
                 </div>
             </div>
-
+            
             <!-- If user has a team -->
-            <div class="box-container">
-                <div class="box">
-                    <h2>My team</h2>
+            <%if (userData[0].teamname) { %>
+                <div class="box-container">
+                    <div class="box">
+                        <h2>My team: <%= userData[0].teamname %></h2>
+                    </div>
                 </div>
-            </div>
+            <% } %>
             <!-- End If user has a team -->
         </div>
     </body>

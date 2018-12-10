@@ -15,6 +15,10 @@ body {
 	justify-content: space-between;
 }
 
+.flex.buttons label {
+	display: inline;
+}
+
 .actions {
 	padding-bottom: 20px;
 }

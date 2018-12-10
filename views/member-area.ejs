@@ -12,7 +12,6 @@
         <link rel="icon" type="image/x-icon" href="/public/img/favicon.png">
 
         <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-        <script src="/public/js/alert.js"></script>
     </head>
 
     <body>
@@ -27,39 +26,11 @@
                     <button id="join">I want to register</button>
                 </div>
                 
-                <div id="member-area" class="form">
-                    
-                </div>
+                <div id="member-area" class="form"></div>
             </div>
         </div>
 
-        <script>
-            /* TODO Convert Ajax in NodeJs */
-            function loadPage(pageName) {
-                $.ajax({
-                    url : '../public/template/' + pageName + '.ejs',
-                    type : 'GET',
-                    success : function(page) {
-                        $('.form').html(page);
-                    }
-                });
-            }
-
-            $('.actions button').click(function() {
-                var $buttonId = $(this).attr('id');
-
-                if($buttonId != 'login' && $buttonId != 'join') {
-                    return;
-                }
-
-                if(!$(this).hasClass('active')) {
-                    $('.actions button').toggleClass('active');
-                    
-                    loadPage($buttonId);
-                }
-            });
-
-            loadPage('login');
-        </script>
+        <script src="/public/js/custom/member-area.min.js"></script>
+        <script src="/public/js/custom/alert.min.js"></script>
     </body>
 </html>

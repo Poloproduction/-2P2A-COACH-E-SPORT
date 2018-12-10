@@ -12,7 +12,6 @@
         <link rel="icon" type="image/x-icon" href="/public/img/favicon.png">
 
         <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-        <script src="/public/js/alert.js"></script>
     </head>
 
     <body>
@@ -53,11 +52,8 @@
                 </div>
             </div>
 
-            <script>
-            // TODO Add this to a js file or remove it ?
-            $('.input').on('input', function(e) {
-                $('button').html('Create ' + $(e.target).val());
-            });
-            </script>
+            <script src="/public/js/custom/create-team.min.js"></script>
+            <script src="/public/js/custom/alert.min.js"></script>
+            <script src="/public/js/custom/autocomplete.js"></script>
     </body>
 </html>

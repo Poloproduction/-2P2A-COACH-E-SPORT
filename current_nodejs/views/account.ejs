@@ -12,7 +12,8 @@
         <link rel="icon" type="image/x-icon" href="/public/img/favicon.png">
 
         <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-        <script src="/public/js/alert.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     </head>
 
     <body>
@@ -71,19 +72,10 @@
                         <input type="text" id="city" name="city" class="input small-label" value="<%= userData[0].city %>" />
 
                         <label for="weapon">Favorite weapon (it will be your avatar !):</label>
-                        <!-- TODO https://jqueryui.com/autocomplete/ -->
-                        <!-- On weapon change, it change the avatar -->
-                        <select class="input">
-                            <option>Lorem ipsum dolor</option>
-                            <option>Lorem ipsum dolor</option>
-                        </select>
+                        <input type="text" id="favorite-weapon" class="input" />
 
                         <label for="skin">My favorite skin:</label>
-                        <!-- TODO -->
-                        <select class="input">
-                            <option>Lorem ipsum dolor</option>
-                            <option>Lorem ipsum dolor</option>
-                        </select>
+                        <input type="text" id="favorite-skin" class="input" />
 
                         <button type="submit" class="button">Save</button>
                     </form>
@@ -98,5 +90,8 @@
                 </div>
             <% } %>
         </div>
+
+        <script src="/public/js/custom/alert.min.js"></script>
+        <script src="/public/js/custom/autocomplete.js"></script>
     </body>
 </html>

@@ -8,7 +8,6 @@ before_script:
 - psql -c "CREATE USER posttgres WITH PASSWORD 'mysecretpassword';" -U postgres
 - psql -U postgres -d postgres -a -f ./createUsers.sql
 script:
-- cd current_nodejs/
 - yarn
 - yarn test --forceExit
 notifications:

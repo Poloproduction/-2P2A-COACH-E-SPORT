@@ -13,8 +13,6 @@ script:
 - yarn test --forceExit
 notifications:
   email: false
-before_deploy:
-- cd current_nodejs/
 deploy:
   provider: heroku
   api_key:

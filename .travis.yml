@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+- '9'
+service:
+- postgresql
+before_script:
+- psql -c 'create database travis_ci_test;' -U postgres
+- psql -c "CREATE USER posttgres WITH PASSWORD 'mysecretpassword';" -U postgres
+- psql -U postgres -d postgres -a -f ./createUsers.sql
+script:
+- cd current_nodejs/
+- yarn
+- yarn test --forceExit
+notifications:
+  email: false
+deploy:
+  provider: heroku
+  api_key:
+    secure: chBNCPTp2lwuyIqkJF5OyWRmqt4w42fZnTrs9l1IzLfVqzZrrCNGLub0AA0RheTG22XiwTJwpaEGSOCQRyQmjTnotG/ob/+ioZam1MaX0FAhfnBYB47loxA1VuWWNDjw94I7smZ2oNC4TqupRqt79LkzeVHyTvfFTk0JnXEh37xXmzzPR4KHyYHe8wqPR7b60DcaxrEgKX55pA8jyU7BbCiYHoB/LYgLY3YzVCmZ9nAQt8gEO3jRUbplHWZ2cSdj5FB8pCKd5IXqcYxCd4pD+3dzSuC5dkJVwE89kMVaBQFlTVSFsrN8vOlsyDbjmBv27Xe/t5s2dz4e+13ZHYgC+Cm/o07uUdvv7TKfR6pxKdsRPwMP2UVNAQ1IUvXX0cdMIwpKKVFziXkalCfBlov9w60C9QdV++tRnp4RMSgsVu1q+dEXHpb00uYNseHQVschth5r0Qk97/EEVLOFYEn8to1bMJrdrWiHghRjMhqcJs1sAbZyo6h83KdF05uqtiOC2g/pQNEqmZzb/UUTWJWEDRlkHa86B2rUIvmRsj/+yy9tjj7l2eGB7BSVPsLkRGQdCK+Humv5xGg/bX/dbpdJkMahnVYlAhOWupMx5TbeKwpIKivDMAm0IlIWVoG14gSHMYH1mtIwm+ymd3ZNHfbUF6in+6gJW1UsZsQB+FVs1aI=
+  app: 2P2A-COACH-E-SPORT

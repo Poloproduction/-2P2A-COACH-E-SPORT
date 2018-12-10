@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Fortnite Coach</title>
+        <link rel="stylesheet" href="../public/css/global.css" />
+        <link rel="stylesheet" href="../public/css/index.css" />
+        <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+    </head>
+
+    <body>
+        <div class="wrap">
+            <!-- NAVIGATION -->
+            <%- include partials/header.ejs %>
+            <!-- NAVIGATION -->
+            <p>Hello <%= userData[0].firstname %> !</p>
+            <a href="/logout">Déconnexion</a>
+        </div>
+    </body>
+</html>

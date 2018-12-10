@@ -11,6 +11,8 @@ create table users
   iam       char(64) default 'Amateur'::bpchar,
   pseudo    char(64),
   city      char(64),
+  weapon    char(64),
+  skin      char(64),
   teamname  char(64)
 );
 

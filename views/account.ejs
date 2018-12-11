@@ -53,7 +53,7 @@
                     <h2>Public informations</h2>
 
                     <div class="avatar clearfix">
-                        <img src="/public/img/avatars/default.png" />
+                        <img src="/public/img/avatars/default.png" class="default" />
                     </div>
 
                     <form method="post" action="/update-public-infos">
@@ -66,7 +66,7 @@
                         <label for="pseudo">Pseudo :</label>
                         <input type="text" id="pseudo" name="pseudo" class="input small-label" value="<%= userData[0].pseudo %>" />
                         <label for="age">Age :</label>
-                        <input type="text" id="age" name="age" class="input small-label" value='<%= new Number((new Date().getTime() - new Date(userData[0].birthday).getTime()) / 31536000000).toFixed(0) %>' disabled /> <!-- Calculer avec le birthday -->
+                        <input type="text" id="age" name="age" class="input small-label" value="<%= new Number((new Date().getTime() - new Date(userData[0].birthday).getTime()) / 31536000000).toFixed(0) %>" disabled />
 
                         <label for="city">Favorite city:</label>
                         <input type="text" id="city" name="city" class="input small-label" value="<%= userData[0].city %>" />
@@ -74,8 +74,8 @@
                         <label for="weapon">Favorite weapon (it will be your avatar !):</label>
                         <input type="text" name="weapon" id="favorite-weapon" class="input" value="<%= userData[0].weapon %>" />
 
-                        <label for="skin">My favorite skin:</label>
-                        <input type="text" name="skin" id="favorite-skin" class="input" value="<%= userData[0].skin %>" />
+                        <label for="city">My favorite city:</label>
+                        <input type="text" name="city" id="favorite-city" class="input" value="<%= userData[0].city %>" />
 
                         <button type="submit" class="button">Save</button>
                     </form>

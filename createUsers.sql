@@ -12,7 +12,6 @@ create table users
   pseudo    char(64),
   city      char(64),
   weapon    char(64),
-  city      char(64),
   teamname  char(64)
 );
 

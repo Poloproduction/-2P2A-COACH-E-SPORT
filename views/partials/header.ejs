@@ -1,51 +1,31 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>My Fortnite Coach</title>
-        <link rel="stylesheet" href="/public/css/global.css" />
-        <link rel="stylesheet" href="/public/css/index.css" />
-        <link rel="stylesheet" href="/public/css/slick.css" />
-        <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css' />
-        <link rel="stylesheet" href='/public/css/selectize.css' />
-        <link rel="stylesheet" href="/public/css/alert.css" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-
-        <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
-        <script src="/public/js/alert.js"></script>
-
-    </head>
-
-    <body>
-        <%if (messages) { %>
-            <%if (messages.warning) { %>
-                <%if (messages.warning.length) { %>
-                       <script>sendAlert('Warning', '<%= messages.warning %>', 'exclamation-triangle');</script>
-                <% } %>
-            <% } %>
-            <%if (messages.danger) { %>
-                <%if (messages.danger.length) { %>
-                      <script>sendAlert('Information', '<%= messages.danger %>', 'exclamation-circle');</script>
-                <% } %>
-            <% } %>
-            <%if (messages.success) { %>
-                <%if (messages.success.length) { %>
-                       <script>sendAlert('Success', '<%= messages.success %>', 'user-circle');</script>
-                <% } %>
-            <% } %>
+<script src="/public/js/custom/alert.min.js"></script>
+<%if (messages) { %>
+    <%if (messages.warning) { %>
+        <%if (messages.warning.length) { %>
+                <script>sendAlert('Warning', '<%= messages.warning %>', 'exclamation-triangle');</script>
         <% } %>
+    <% } %>
+    <%if (messages.danger) { %>
+        <%if (messages.danger.length) { %>
+                <script>sendAlert('Information', '<%= messages.danger %>', 'exclamation-circle');</script>
+        <% } %>
+    <% } %>
+    <%if (messages.success) { %>
+        <%if (messages.success.length) { %>
+                <script>sendAlert('Success', '<%= messages.success %>', 'user-circle');</script>
+        <% } %>
+    <% } %>
+<% } %>
 
-        <nav>
-            <ul>
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="">Link 2</a></li>
-                <li><a href="">Link 3</a></li>
-                <%if (userData) { %>
-                    <li class="right"><a href="/logout">Déconnexion</a></li>
-                    <li class="right"><a href="/account">My account</a></li>
-                <% } else { %>
-                    <li class="right"><a href="member-area">Sign in</a></li>
-                <% } %>
-            </ul>
-        </nav>
-    </body>
-</html>
+<nav>
+    <ul>
+        <li <% if (title === 'Home') { %>class="active"<% } %>><a href="/">Home</a></li>
+        <%if (userData) { %>
+            <li class="right"><a href="/logout">Déconnexion</a></li>
+            <li class="<% if (title === 'Account') { %>active <% } %>right"><a href="/account">My account</a></li>
+        <% } else { %>
+            <li class="
+                <% if (title === 'Member area') { %>active <% } %>right"><a href="member-area">Sign in</a></li>
+        <% } %>
+    </ul>
+</nav>

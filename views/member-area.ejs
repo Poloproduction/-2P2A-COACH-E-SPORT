@@ -2,9 +2,16 @@
 <html>
     <head>
         <title>My Fortnite Coach</title>
-        <link rel="stylesheet" href="../public/css/global.css" />
-        <link rel="stylesheet" href="../public/css/member-area.css" />
-        <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+        <link rel="stylesheet" href="/public/css/global.css" />
+        <link rel="stylesheet" href="/public/css/member-area.css" />
+        <link rel="stylesheet" href="/public/css/slick.css" />
+        <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css' />
+        <link rel="stylesheet" href='/public/css/selectize.css' />
+        <link rel="stylesheet" href="/public/css/alert.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="icon" type="image/x-icon" href="/public/img/favicon.png">
+
+        <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     </head>
 
     <body>
@@ -19,46 +26,10 @@
                     <button id="join">I want to register</button>
                 </div>
                 
-                <div class="form">
-                    <form method="post" action="/login" class="form" method="post">
-                        <label for="username">Login</label>
-                        <input type="text" id="username" name="username" />
-    
-                        <label for="username">Password</label>
-                        <input type="password" name="password" />
-                    
-                        <div class="flex buttons">
-                            <div>
-                                <input type="checkbox" name="remember" /> Remember me
-                            </div>
-                            <div>
-                                <button class="submit" type="submit">Sign in</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                <div id="member-area" class="form"></div>
             </div>
         </div>
 
-        <script>
-            /* TODO Convert Ajax in NodeJs */
-            $('.actions button').click(function() {
-                if($(this).attr('id') != 'login' && $(this).attr('id') != 'join') {
-                    return;
-                }
-
-                if(!$(this).hasClass('active')) {
-                    $('.actions button').toggleClass('active');
-                    
-                    $.ajax({
-                        url : '../public/template/' + $(this).attr('id') + '.ejs',
-                        type : 'GET',
-                        success : function(page) {
-                            $('.form').html(page);
-                        }
-                    });
-                }
-            });
-        </script>
+        <script src="/public/js/custom/member-area.min.js"></script>
     </body>
 </html>

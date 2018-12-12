@@ -25,6 +25,7 @@
     "jquery": "^3.3.1",
     "mongodb": "^3.0.7",
     "node-gyp": "^3.6.2",
+    "nodemon": "^1.18.7",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pg": "^7.6.0",
@@ -32,7 +33,7 @@
     "request": "^2.88.0",
     "swig": "^1.4.2",
     "uuid": "^3.3.2",
-    "nodemon": "^1.18.5"
+    "yarn": "^1.12.3"
   },
   "devDependencies": {
     "babel-jest": "^23.6.0",

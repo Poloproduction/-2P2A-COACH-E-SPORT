@@ -7,6 +7,7 @@ before_script:
 - psql -c 'create database travis_ci_test;' -U postgres
 - psql -c "CREATE USER posttgres WITH PASSWORD 'mysecretpassword';" -U postgres
 - psql -U postgres -d postgres -a -f ./createUsers.sql
+- psql -U postgres -d postgres -a -f ./createTeam.sql
 script:
 - yarn
 - yarn test --forceExit

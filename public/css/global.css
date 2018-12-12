@@ -11,7 +11,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	background: url('../img/background.jpg') no-repeat center fixed;
+	background: url('/public/img/backgrounds/all.jpg') no-repeat center fixed;
 	background-size: cover;
 	font-family: 'BurbankBigCondensed';
     letter-spacing: 1px;
@@ -47,6 +47,10 @@ nav ul li.right {
     float: right;
 }
 
+nav ul li.right a:hover {
+    background: #9324c7;
+}
+
 nav ul li.active {
     background: #5a72af;
 }
@@ -59,6 +63,91 @@ nav ul li a {
 
 nav ul li a:hover {
     background: #192a55;
+}
+
+/* Box */
+.box {
+	background: rgba(93, 74, 186, 0.8);
+    padding: 20px;
+    margin: 30px 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+	width: 100%;
+}
+
+.box h2 {
+	margin: 0 0 10px 0;
+	color: #fff;
+}
+
+.box-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.box.box-65 {
+	width: 65%;
+}
+
+.box.box-30 {
+	width: 30%;
+}
+
+/* Form */
+form {
+	font-family: 'Open Sans';
+}
+
+form label {
+	display: block;
+	font-size: 16px;
+}
+
+form .input {
+	display: block;
+    margin-bottom: 20px;
+    width: 100%;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+	padding: 8px;
+}
+
+form .input.small-label {
+    width: 50%;
+}
+
+form .input[type=date] {
+	font-family: 'Open Sans';
+	height: 33px;
+}
+
+form .button {
+	background: #520f72;
+	float: right;
+    margin: 15px 0 0 0;
+    border: none;
+    padding: 2px 20px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    height: 33px;
+	line-height: 33px;
+	font-family: 'BurbankBigCondensed';
+}
+
+form .button:hover {
+	background: #9324c7;
+}
+
+form .radio label {
+    display: inline;
 }
 
 /* Responsive */

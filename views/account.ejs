@@ -22,7 +22,7 @@
             <%- include partials/header.ejs %>
             <!-- NAVIGATION -->
 
-            <%if (userData[0].team_name == null) { %>
+            <%if (userData[0].team.id == null) { %>
                 <div id="team-buttons">
                     <a href="/create-team" class="button">Create a team</a>
                     <a href="/join-team" class="button">Join a team</a>
@@ -79,10 +79,10 @@
                 </div>
             </div>
             
-            <%if (userData[0].team_name) { %>
+            <%if (userData[0].team.id) { %>
                 <div class="box-container">
                     <div class="box">
-                        <h2>My team: <%= userData[0].team_name %></h2>
+                        <h2>My team: <%= userData[0].team.name %></h2>
                     </div>
                 </div>
             <% } %>

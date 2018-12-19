@@ -3,7 +3,7 @@
     <head>
         <title>My Fortnite Coach</title>
         <link rel="stylesheet" href="/public/css/global.css" />
-        <link rel="stylesheet" href="/public/css/account.css" />
+        <link rel="stylesheet" href="/public/css/team.css" />
         <link rel="stylesheet" href="/public/css/slick.css" />
         <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css' />
         <link rel="stylesheet" href='/public/css/selectize.css' />
@@ -31,19 +31,19 @@
                         <div class="radio">
                             <p>Select an offer:</p>
 
-                            <div class="bronze">
-                                <input type="radio" id="bronze" name="nbmembers" value="1" />
-                                <label for="bronze">Bronze (1 to 5 members)</label>
+                            <div class="offer-box bronze">
+                                <input type="radio" id="bronze" class="offer" name="offer" value="1" />
+                                <label for="bronze"><strong>Bronze</strong> (1 to 5 members) <small>- only 35€ for your entire life !</small></label>
                             </div>
                             
-                            <div class="silver">
-                                <input type="radio" id="silver" name="nbmembers" value="2" />
-                                <label for="silver">Silver (5 to 10 members)</label>
+                            <div class="offer-box silver">
+                                <input type="radio" id="silver" class="offer" name="offer" value="2" />
+                                <label for="silver"><strong>Silver</strong> (6 to 10 members) <small>- only 100€ for your entire life !</small></label>
                             </div>
     
-                            <div class="gold">
-                                <input type="radio" id="gold" name="nbmembers" value="3" />
-                                <label for="gold">Gold (10+ members)</label>
+                            <div class="offer-box gold">
+                                <input type="radio" id="gold" class="offer" name="offer" value="3" />
+                                <label for="gold"><strong>Gold</strong> (From 10 members) <small>- only 350€ for your entire life !</small></label>
                             </div>
                         </div>
 
@@ -53,6 +53,5 @@
             </div>
 
             <script src="/public/js/custom/create-team.min.js"></script>
-            <script src="/public/js/custom/autocomplete.js"></script>
     </body>
 </html>

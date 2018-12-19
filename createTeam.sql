@@ -10,8 +10,8 @@ create table team
 
 create table team_users
 (
-  team_id char(36) not null,
-  user_id char(36) not null,
+  team_id uuid not null,
+  user_id uuid not null,
   primary key(team_id, user_id)
 );
 

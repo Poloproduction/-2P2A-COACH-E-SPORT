@@ -68,9 +68,6 @@
                         <label for="age">Age :</label>
                         <input type="text" id="age" name="age" class="input small-label" value="<%= new Number((new Date().getTime() - new Date(userData[0].birthday).getTime()) / 31536000000).toFixed(0) %>" disabled />
 
-                        <label for="city">Favorite city:</label>
-                        <input type="text" id="city" name="city" class="input small-label" value="<%= userData[0].city %>" />
-
                         <label for="weapon">Favorite weapon (it will be your avatar !):</label>
                         <input type="text" name="weapon" id="favorite-weapon" class="input" value="<%= userData[0].weapon %>" />
 

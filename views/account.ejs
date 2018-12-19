@@ -22,7 +22,7 @@
             <%- include partials/header.ejs %>
             <!-- NAVIGATION -->
 
-            <%if (userData[0].team.id == null) { %>
+            <%if (!userData[0].team.id) { %>
                 <div id="team-buttons">
                     <a href="/create-team" class="button">Create a team</a>
                     <a href="/join-team" class="button">Join a team</a>

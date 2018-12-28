@@ -88,3 +88,28 @@ describe("Test the /join post", () => {
   });
 });
 
+describe('End of tests', ()=> {
+  test('Delete the testUser', async()=> {
+    try{
+      const client = await pool.connect()
+      await client.query('BEGIN')
+      await client.query('DELETE FROM "users" WHERE "email" = $1', [testUser], function(err, result) {
+        expect(result.rowCount).toBe(1);
+        client.query('COMMIT')
+      });
+      client.release();
+    } 
+    catch(e){throw(e)}
+  })
+  test('Table users does not contains the testUser', async()=> {
+    try{
+      const client = await pool.connect()
+      await client.query('BEGIN')
+      await JSON.stringify(client.query('SELECT * FROM "users" WHERE "email"=$1', [reqo.username], function(err, result) {
+        expect(result.rowCount).toBe(0);
+      }));
+      client.release();
+    } 
+    catch(e){throw(e)}
+  })
+})

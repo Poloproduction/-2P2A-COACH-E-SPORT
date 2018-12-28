@@ -12,6 +12,14 @@ var reqo = {
       username: "alexandre@hotmail.fr",
       password: "test"
     };
+var reqo_connection = {
+  username: "alexandre@hotmail.fr",
+  password: "test"
+};
+var bad_reqo_connection = {
+  username: "bad@hotmail.fr",
+  password: "badtest"
+};
 
 var testUser = "";
 const databaseUrl = process.env.DATABASE_URL || process.env.LOCAL_DATABASE_URL;
@@ -35,6 +43,13 @@ describe("Test the get functions", function() {
         .set('Accept', 'application/json')
         .expect(200, done);
   })
+  test("Get /account respond 302", function(done) {
+    request(app)
+        .get('/account')
+        .set('Accept', 'application/json')
+        .expect(302, done);
+  })
+
 })
 
 
@@ -57,6 +72,8 @@ describe("Test the login post", () => {
   
 });
 
+
+// connection and navigation tests
 describe("Test the /join post", () => {
   
   test('It should insert a new user in database', async () => {
@@ -94,6 +111,7 @@ describe("Test the /join post", () => {
   });
 });
 
+// bcrypt test
 describe("Test the bcrypt hash", () => {
   test('Compare pasw in base to password', async (done) => {
     try {
@@ -110,6 +128,25 @@ describe("Test the bcrypt hash", () => {
     catch(e){throw(e)}
     done();
   });
+});
+
+// login test
+describe("Test the login post", () => {
+  test("It should redirect to /account", async () => {
+    const data = await request(app)
+      .post("/login")
+      .send(reqo_connection);
+    expect(data.statusCode).toBe(302);
+   expect(data.text).toEqual('Found. Redirecting to /account');
+  });
+  test("It shouldn't redirect to /member-area", async () => {
+    const data = await request(app)
+      .post("/login")
+      .send(bad_reqo_connection);
+    expect(data.statusCode).toBe(302);
+    expect(data.text).toEqual('Found. Redirecting to /member-area');
+  });
+  
 });
 
 

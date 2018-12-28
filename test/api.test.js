@@ -29,7 +29,7 @@ describe("Test the get functions", function() {
         .set('Accept', 'application/json')
         .expect(200, done);
   })
-  test("Get /account respond 200", function(done) {
+  test("Get /member-area respond 200", function(done) {
     request(app)
         .get('/member-area')
         .set('Accept', 'application/json')
@@ -58,10 +58,9 @@ describe("Test the login post", () => {
 });
 
 describe("Test the /join post", () => {
+  
   test('It should insert a new user in database', async () => {
-
     var data = await request(app).post("/join").send(reqo);
-
     try{
       const client = await pool.connect()
       await client.query('BEGIN')
@@ -73,11 +72,13 @@ describe("Test the /join post", () => {
         expect(noSpace).toEqual(reqo.lastname);
         var noSpace = (result.rows[0].email).replace(/ /g,"");
         expect(noSpace).toEqual(reqo.username);
+        expect(data.text).toEqual('Found. Redirecting to /member-area');
       }));
       client.release();
     } 
     catch(e){throw(e)}
   });
+  
   test('post respond 302', function (done) {
     request(app)
       .post('/join')
@@ -85,6 +86,11 @@ describe("Test the /join post", () => {
       .set('Accept', 'application/json')
       .expect(302);
       done();
+  });
+
+  test('It should redirect to / because user already exist', async () => {
+    var data = await request(app).post("/join").send(reqo);
+    expect(data.text).toEqual('Found. Redirecting to /');
   });
 });
 
@@ -105,6 +111,9 @@ describe("Test the bcrypt hash", () => {
     done();
   });
 });
+
+
+// ----------------------------------------------------------------
 
 describe('End of tests', ()=> {
   test('Delete the testUser', async()=> {
@@ -131,3 +140,10 @@ describe('End of tests', ()=> {
     catch(e){throw(e)}
   })
 })
+
+// ----------------------------------------------------------------------
+
+afterAll((done) => {
+  app.close();
+  done();
+});

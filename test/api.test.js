@@ -88,6 +88,24 @@ describe("Test the /join post", () => {
   });
 });
 
+describe("Test the bcrypt hash", () => {
+  test('Compare pasw in base to password', async (done) => {
+    try {
+      const client = await pool.connect()
+      //const psw = await bcrypt.hash(reqo.password, 5)
+      await client.query('BEGIN')
+      await JSON.stringify(client.query('SELECT * FROM "users" WHERE "email"=$1', [reqo.username], function(err, result) {
+        bcrypt.compare(reqo.password, result.rows[0].password, function(err, res) {
+          expect(res).toBe(true);
+        });
+      }));
+      client.release();
+    }  
+    catch(e){throw(e)}
+    done();
+  });
+});
+
 describe('End of tests', ()=> {
   test('Delete the testUser', async()=> {
     try{

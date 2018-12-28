@@ -3,16 +3,33 @@ var request = require("supertest");
 var bcrypt = require("bcrypt");
 // close the server after each test
 
+const { Pool, Client } = require('pg')
+
+
+var reqo = {
+      firstname: "alex",
+      lastname: "armando",
+      username: "alexandre@hotmail.fr",
+      password: "test"
+    };
+
+var testUser = "";
+const databaseUrl = process.env.DATABASE_URL || process.env.LOCAL_DATABASE_URL;
+
+const pool = new Pool({ 
+      connectionString: databaseUrl,
+});
+
 // ----------------------------------------------------------------------------------------------
 
-describe("Test the / get", function() {
+describe("Test the get functions", function() {
   test("Get / respond 200", function(done) {
     request(app)
         .get('/')
         .set('Accept', 'application/json')
         .expect(200, done);
   })
-  test("Get /account respond ", function(done) {
+  test("Get /account respond 200", function(done) {
     request(app)
         .get('/member-area')
         .set('Accept', 'application/json')
@@ -38,5 +55,36 @@ describe("Test the login post", () => {
     expect(response.header["set-cookie"]).toEqual(expect.arrayContaining([expect.stringMatching("connect.sid=")]));
   });
   
+});
+
+describe("Test the /join post", () => {
+  test('It should insert a new user in database', async () => {
+
+    var data = await request(app).post("/join").send(reqo);
+
+    try{
+      const client = await pool.connect()
+      await client.query('BEGIN')
+      await JSON.stringify(client.query('SELECT * FROM "users" WHERE "email"=$1', [reqo.username], function(err, result) {
+        testUser=result.rows[0].email;
+        var noSpace = (result.rows[0].firstname).replace(/ /g,"");
+        expect(noSpace).toEqual(reqo.firstname);
+        var noSpace = (result.rows[0].lastname).replace(/ /g,"");
+        expect(noSpace).toEqual(reqo.lastname);
+        var noSpace = (result.rows[0].email).replace(/ /g,"");
+        expect(noSpace).toEqual(reqo.username);
+      }));
+      client.release();
+    } 
+    catch(e){throw(e)}
+  });
+  test('post respond 302', function (done) {
+    request(app)
+      .post('/join')
+      .send(reqo)
+      .set('Accept', 'application/json')
+      .expect(302);
+      done();
+  });
 });
 

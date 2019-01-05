@@ -89,6 +89,94 @@
                 <div class="box-container">
                     <div class="box">
                         <h2>My team: <%= userData[0].team.name %></h2>
+
+                        <!-- 
+                            TODO:
+                            If we are on the user profile, don't show "see user profile"
+                            If user is the team's coach, show "Kick" on all users except himself
+                            If someone else see the team page, he will not see teh boxes with "add a player"
+                        -->
+
+                        <div class="team-user-list">
+                            <div class="team-user owner">
+                                <div class="tu-avatar"><img src="/public/img/avatars/default.png" alt="Avatar de"></div>
+                                <div class="tu-user">
+                                    <span class="tu-username"><i class="fa fa-shield" aria-hidden="true"></i> AllStormfy</span>
+                                    <a href="/">See coach profile</a>
+                                </div>
+                            </div>
+    
+                            <div class="team-user">
+                                <div class="tu-avatar"><img src="/public/img/weapons/scar.png" alt="Avatar de"></div>
+                                <div class="tu-user">
+                                    <span class="tu-username">Mister Jingles</span>
+                                    <a href="/">See user profile</a>
+                                    <a href="/" class="kick">Kick</a>
+                                </div>
+                            </div>
+    
+                            <div class="team-user">
+                                <div class="tu-avatar"><img src="/public/img/weapons/m4.png" alt="Avatar de"></div>
+                                <div class="tu-user">
+                                    <span class="tu-username">Ta mère en slip</span>
+                                    <a href="/">See user profile</a>
+                                    <a href="/" class="kick">Kick</a>
+                                </div>
+                            </div>
+    
+                            <div class="team-user nobody">
+                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
+                                <div class="tu-user">
+                                    <a href="/add-player" class="add">Add a player</a>
+                                </div>
+                            </div>
+    
+                            <div class="team-user nobody">
+                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
+                                <div class="tu-user">
+                                    <a href="/add-player" class="add">Add a player</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="team-user-list">
+                            <div class="team-user nobody">
+                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
+                                <div class="tu-user">
+                                    <a href="/add-player" class="add">Add a player</a>
+                                </div>
+                            </div>
+    
+                            <div class="team-user nobody">
+                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
+                                <div class="tu-user">
+                                    <a href="/add-player" class="add">Add a player</a>
+                                </div>
+                            </div>
+    
+                            <div class="team-user nobody">
+                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
+                                <div class="tu-user">
+                                    <a href="/add-player" class="add">Add a player</a>
+                                </div>
+                            </div>
+    
+                            <div class="team-user nobody">
+                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
+                                <div class="tu-user">
+                                    <a href="/add-player" class="add">Add a player</a>
+                                </div>
+                            </div>
+    
+                            <div class="team-user nobody">
+                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
+                                <div class="tu-user">
+                                    <a href="/add-player" class="add">Add a player</a>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <a href="/" class="button">Improve your subscription and get more users now !</a>
                     </div>
                 </div>
             <% } %>

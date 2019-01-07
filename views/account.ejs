@@ -89,11 +89,6 @@
                 <div class="box-container">
                     <div class="box">
                         <h2>My team: <%= userData[0].team.name %></h2>
-
-                        <!-- TODO:
-                            If someone else see the team page, he will not see teh boxes with "add a player"
-                            Load userData[0].id
-                        -->
                         
                             <% for (i = 0; i < userData[0].team.offer * 5; i++) { %>
                                 <% if (i%5 === 0) { %>
@@ -125,7 +120,7 @@
                                             </div>
                                         </div>
                                     <% } %>
-                                <% } else { %>
+                                <% } else if (userData[0].team.coach_id == userData[0].id) { %>
                                     <div class="team-user nobody">
                                         <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
                                         <div class="tu-user">

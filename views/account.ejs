@@ -100,7 +100,7 @@
                                         <div class="team-user owner">
                                             <div class="tu-avatar"><img src="/public/img/avatars/default.png" alt="Avatar de"></div>
                                             <div class="tu-user">
-                                                <span class="tu-username"><i class="fa fa-shield" aria-hidden="true"></i> AllStormfy</span>
+                                                <span class="tu-username"><i class="fa fa-shield" aria-hidden="true"></i> <%= teamMates[i].pseudo %></span>
                                                 <% if (userData[0].id != teamMates[i].user_id) { %>
                                                 <a href="/">See coach profile</a>
                                                 <% } %>
@@ -110,7 +110,14 @@
                                         <div class="team-user">
                                             <div class="tu-avatar"><img src="/public/img/weapons/scar.png" alt="Avatar de"></div>
                                             <div class="tu-user">
-                                                <span class="tu-username">Mister Jingles</span>
+                                                <span class="tu-username">
+                                                    <% if (teamMates[i].pseudo) { %>
+                                                    <%= teamMates[i].pseudo %>
+                                                    <% } else { %>
+                                                    <%= teamMates[i].firstname + " " + teamMates[i].lastname[0] + "." %>
+                                                    <% } %>
+                                                
+                                                </span>
                                                 <% if (userData[0].id != teamMates[i].user_id) { %>
                                                     <a href="/">See user profile</a>
                                                 <% } %>

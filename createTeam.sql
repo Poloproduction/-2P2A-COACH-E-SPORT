@@ -23,12 +23,6 @@ create table team_codes
   primary key(team_id, code)
 )
 
-alter table team
-  owner to postgres;
-
-alter table team_users
-  owner to postgres;
-
 create unique index team_id_uindex
   on team (id);
 

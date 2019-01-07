@@ -14,8 +14,5 @@ create table users
   weapon    char(64)
 );
 
-alter table users
-  owner to postgres;
-
 create unique index users_email_uindex
   on users (email);

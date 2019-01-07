@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Fortnite Coach</title>
+        <link rel="stylesheet" href="/public/css/global.css" />
+        <link rel="stylesheet" href="/public/css/add-join-team.css" />
+        <link rel="stylesheet" href="/public/css/slick.css" />
+        <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css' />
+        <link rel="stylesheet" href='/public/css/selectize.css' />
+        <link rel="stylesheet" href="/public/css/alert.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="icon" type="image/x-icon" href="/public/img/favicon.png">
+
+        <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    </head>
+
+    <body>
+        <div class="wrap">
+            <!-- NAVIGATION -->
+            <%- include partials/header.ejs %>
+            <!-- NAVIGATION -->
+
+            <div class="box-container">
+                <div class="box">
+                    <h2>Join a team</h2>
+
+                    <form method="post" class="join-form" action="/add-player">
+                        <label for="email">Please use the code you received in email:</label>
+                        <input type="text" id="code" name="code" class="input join" />
+                        <button type="submit" class="button">Join the team !</button>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+
+        <script src="/public/js/custom/autocomplete.js"></script>
+    </body>
+</html>

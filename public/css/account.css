@@ -1,0 +1,41 @@
+#team-buttons a {
+	display: inline-block;
+    background: #9324c7;
+    width: calc(50% - 3px);
+    line-height: 50px;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+}
+
+#team-buttons a:hover {
+    background: #a555cc;
+}
+
+.avatar {
+    float: right;
+    margin: 0 60px 20px 20px;
+}
+
+.avatar img {
+    border-radius: 100%;
+    width: 200px;
+    height: 200px;
+    border: 2px solid white;
+    padding: 20px;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box
+}
+
+.avatar img.default {
+    padding: 0;
+}
+
+.clearfix::after {
+	clear: both;
+	content: "";
+}
+
+@media only screen and (max-width: 768px) {
+
+}

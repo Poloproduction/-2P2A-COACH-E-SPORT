@@ -90,91 +90,54 @@
                     <div class="box">
                         <h2>My team: <%= userData[0].team.name %></h2>
 
-                        <!-- 
-                            TODO:
-                            If we are on the user profile, don't show "see user profile"
-                            If user is the team's coach, show "Kick" on all users except himself
+                        <!-- TODO:
                             If someone else see the team page, he will not see teh boxes with "add a player"
+                            Load userData[0].id
                         -->
+                        
+                            <% for (i = 0; i < userData[0].team.offer * 5; i++) { %>
+                                <% if (i%5 === 0) { %>
+                                <div class="team-user-list">
+                                <% } %>
 
-                        <div class="team-user-list">
-                            <div class="team-user owner">
-                                <div class="tu-avatar"><img src="/public/img/avatars/default.png" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <span class="tu-username"><i class="fa fa-shield" aria-hidden="true"></i> AllStormfy</span>
-                                    <a href="/">See coach profile</a>
-                                </div>
-                            </div>
-    
-                            <div class="team-user">
-                                <div class="tu-avatar"><img src="/public/img/weapons/scar.png" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <span class="tu-username">Mister Jingles</span>
-                                    <a href="/">See user profile</a>
-                                    <a href="/" class="kick">Kick</a>
-                                </div>
-                            </div>
-    
-                            <div class="team-user">
-                                <div class="tu-avatar"><img src="/public/img/weapons/m4.png" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <span class="tu-username">Ta mère en slip</span>
-                                    <a href="/">See user profile</a>
-                                    <a href="/" class="kick">Kick</a>
-                                </div>
-                            </div>
-    
-                            <div class="team-user nobody">
-                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <a href="/add-player" class="add">Add a player</a>
-                                </div>
-                            </div>
-    
-                            <div class="team-user nobody">
-                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <a href="/add-player" class="add">Add a player</a>
-                                </div>
-                            </div>
-                        </div>
+                                <% if (i < teamMates.length) { %>
+                                    <% if (userData[0].team.coach_id == teamMates[i].user_id) { %>
+                                        <div class="team-user owner">
+                                            <div class="tu-avatar"><img src="/public/img/avatars/default.png" alt="Avatar de"></div>
+                                            <div class="tu-user">
+                                                <span class="tu-username"><i class="fa fa-shield" aria-hidden="true"></i> AllStormfy</span>
+                                                <% if (userData[0].id != teamMates[i].user_id) { %>
+                                                <a href="/">See coach profile</a>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                    <% } else { %>
+                                        <div class="team-user">
+                                            <div class="tu-avatar"><img src="/public/img/weapons/scar.png" alt="Avatar de"></div>
+                                            <div class="tu-user">
+                                                <span class="tu-username">Mister Jingles</span>
+                                                <% if (userData[0].id != teamMates[i].user_id) { %>
+                                                    <a href="/">See user profile</a>
+                                                <% } %>
+                                                <% if (userData[0].team.coach_id == userData[0].id) { %>
+                                                    <a href="/" class="kick">Kick</a>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                    <% } %>
+                                <% } else { %>
+                                    <div class="team-user nobody">
+                                        <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
+                                        <div class="tu-user">
+                                            <a href="/add-player" class="add">Add a player</a>
+                                        </div>
+                                    </div>
+                                <% } %>
 
-                        <div class="team-user-list">
-                            <div class="team-user nobody">
-                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <a href="/add-player" class="add">Add a player</a>
+                                <% if (i%5 === 4) { %>
                                 </div>
-                            </div>
-    
-                            <div class="team-user nobody">
-                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <a href="/add-player" class="add">Add a player</a>
-                                </div>
-                            </div>
-    
-                            <div class="team-user nobody">
-                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <a href="/add-player" class="add">Add a player</a>
-                                </div>
-                            </div>
-    
-                            <div class="team-user nobody">
-                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <a href="/add-player" class="add">Add a player</a>
-                                </div>
-                            </div>
-    
-                            <div class="team-user nobody">
-                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <a href="/add-player" class="add">Add a player</a>
-                                </div>
-                            </div>
-                        </div>
+                                <% } %>
+                            <% } %>
                     
                         <a href="/" class="button">Improve your subscription and get more users now !</a>
                     </div>

@@ -3,7 +3,7 @@ create table team
   id         uuid      not null
     constraint team_pk
       primary key,
-  coach_email char(128) not null,
+  coach_id uuid not null,
   name       char(64)  not null,
   offer  integer
 );
@@ -14,6 +14,14 @@ create table team_users
   user_id uuid not null,
   primary key(team_id, user_id)
 );
+
+create table team_codes
+(
+  team_id uuid not null,
+  code char(5) not null,
+  is_used boolean not null default false,
+  primary key(team_id, code)
+)
 
 alter table team
   owner to postgres;

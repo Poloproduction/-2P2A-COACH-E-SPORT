@@ -4,7 +4,7 @@ create table team
     constraint team_pk
       primary key,
   coach_id uuid not null,
-  name       char(64)  not null,
+  name       varchar(64)  not null,
   offer  integer
 );
 
@@ -18,7 +18,7 @@ create table team_users
 create table team_codes
 (
   team_id uuid not null,
-  code char(5) not null,
+  code varchar(5) not null,
   is_used boolean not null default false,
   primary key(team_id, code)
 )

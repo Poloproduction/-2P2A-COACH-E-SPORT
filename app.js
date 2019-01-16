@@ -9,6 +9,16 @@ var request = require('request');
 
 var session = require("express-session");
 
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'myfortnitecoach@gmail.com',
+        pass: 'SecretPassw0rd'
+    }
+});
+
 var app = express();
 
 app.use(require('cookie-parser')());
@@ -30,6 +40,7 @@ app.use(session({secret: 'keyboard cat'}))
 app.use(bodyParser());
 app.set('view engine', 'ejs');//PUG OR EJS
 app.set('view options', { layout: false });
+app.set('transporter', transporter);
 
 
 require('./lib/routes.js')(app);

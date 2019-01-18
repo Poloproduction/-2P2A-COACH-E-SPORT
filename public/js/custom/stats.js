@@ -36,17 +36,32 @@ $(function(){
     function displayData(data){
         var epicUserHandle = data.epicUserHandle;
         var list = '<ul class="list-group">' +
-                        '<li class="list-group-item">' + 'Solo: ' + data.stats.p2.top1.value + '</li>' +
-                        '<li class="list-group-item">' + 'Duos: ' + data.stats.p10.top1.value + '</li>' +
-                        '<li class="list-group-item">' + 'Teams: ' + data.stats.p9.top1.value + '</li>' +
+                        '<li>' + 'Solo: ' + data.stats.p2.top1.value + '</li>' +
+                        '<li>' + 'Duos: ' + data.stats.p10.top1.value + '</li>' +
+                        '<li>' + 'Teams: ' + data.stats.p9.top1.value + '</li>' +
                     '</ul>';
-        var template = '<div class="card">' +
-                            '<h5 class="card-header">' + epicUserHandle + '</h5>' +
-                            '<div class="card-body">' +
-                                '<h5 class="card-title">' + 'Wins' + '</h5>' +
-                               ' <p class="card-text">' + list + '</p>' +
+        var template = '<div>' +
+                            '<h5>' + epicUserHandle + '</h5>' +
+                            '<div>' +
+                                '<h5>' + 'Wins' + '</h5>' +
+                               ' <p>' + list + '</p>' +
                             '</div>' +
                         '</div>';
         results.html(template);
     }
+});
+
+$('.input').on('input', function(e) {
+    $('button').html('Find ' + $(e.target).val() + '\'s stats');
+});
+
+$('.platform-box').click(function() {
+    $(this).find('.platform').prop('checked', true);
+    $('.platform-box').removeClass('selected');
+    $(this).addClass('selected');
+});
+
+$('input[type=radio]').click(function() {
+	$('.platform-box').removeClass('selected');
+	$(this).parent().toggleClass('selected');
 });

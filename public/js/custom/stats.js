@@ -6,14 +6,12 @@ $(function(){
     var epicNickName = $('#epicNickName');
     var results = $('#results');
 
-
-    
     submitBtn.click(function(){
         var data = {};
         data.epicNickName = epicNickName.val().toLowerCase();
         data.dropDownValue = dropDownValue.toLowerCase();
         $.ajax({
-            type: "POST",
+            type: 'POST',
             url: '/stats',
             dataType: 'json',
             data: data,
@@ -31,19 +29,28 @@ $(function(){
     }
 
     function displayData(data){
-        var epicUserHandle = data.epicUserHandle;
-        var list = '<ul class="list-group">' +
-                        '<li>' + 'Solo: ' + data.stats.p2.top1.value + '</li>' +
-                        '<li>' + 'Duos: ' + data.stats.p10.top1.value + '</li>' +
-                        '<li>' + 'Teams: ' + data.stats.p9.top1.value + '</li>' +
-                    '</ul>';
-        var template = '<div>' +
-                            '<h5>' + epicUserHandle + '</h5>' +
-                            '<div>' +
-                                '<h5>' + 'Wins' + '</h5>' +
-                               ' <p>' + list + '</p>' +
-                            '</div>' +
-                        '</div>';
+        if(data.error) {
+            var template = '<div>' +
+                                '<h2>Error</h2>' +
+                                '<div>' +
+                                    '<p>' + data.error + '</p>' +
+                                '</div>' +
+                            '</div>';
+        } else {
+            var epicUserHandle = data.epicUserHandle;
+            var list = '<ul class="list-group">' +
+                            '<li>' + 'Solo: ' + data.stats.p2.top1.value + '</li>' +
+                            '<li>' + 'Duos: ' + data.stats.p10.top1.value + '</li>' +
+                            '<li>' + 'Teams: ' + data.stats.p9.top1.value + '</li>' +
+                        '</ul>';
+            var template = '<div>' +
+                                '<h2>' + epicUserHandle + '</h2>' +
+                                '<div>' +
+                                    '<h3>' + 'Wins' + '</h3>' +
+                                    '<p>' + list + '</p>' +
+                                '</div>' +
+                            '</div>';
+        }
         results.html(template);
     }
 });

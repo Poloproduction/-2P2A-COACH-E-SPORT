@@ -1,11 +1,12 @@
+// default values
+var dropDownValue = 'pc';
+
 $(function(){
     var submitBtn = $('#submit');
-    var platformDropDownBtn = $('#platform a');
     var epicNickName = $('#epicNickName');
     var results = $('#results');
 
-    // default values
-    var dropDownValue = 'pc';
+
     
     submitBtn.click(function(){
         var data = {};
@@ -22,10 +23,6 @@ $(function(){
             }
         });
         resetResult();
-    });
-
-    platformDropDownBtn.click(function(){
-        dropDownValue = $(this).text();
     });
 
     function resetResult(){
@@ -59,9 +56,10 @@ $('.platform-box').click(function() {
     $(this).find('.platform').prop('checked', true);
     $('.platform-box').removeClass('selected');
     $(this).addClass('selected');
+    dropDownValue = $(this).find('.platform').val();
 });
 
 $('input[type=radio]').click(function() {
 	$('.platform-box').removeClass('selected');
-	$(this).parent().toggleClass('selected');
+    $(this).parent().toggleClass('selected');
 });

@@ -129,7 +129,7 @@ form .input[type=date] {
 
 form .button {
 	background: #520f72;
-	position: absolute;
+	float: right;
     border: none;
     padding: 2px 20px;
     color: #fff;

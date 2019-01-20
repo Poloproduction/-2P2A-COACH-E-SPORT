@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Fortnite Coach</title>
+    <link rel="stylesheet" href="/public/css/global.css" />
+    <link rel="stylesheet" href="/public/css/stats.css" />
+    <link rel="stylesheet" href="/public/css/alert.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="icon" type="image/x-icon" href="/public/img/favicon.png">
+
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+</head>
+<body>
+    <div class="wrap">
+        <!-- NAVIGATION -->
+        <%- include partials/header.ejs %>
+        <!-- NAVIGATION -->
+
+        <div class="box-container">
+            <div class="box">
+                <h2>Find player's stats:</h2>
+
+                <form method="post" class="form" action="/stats">
+                    <label for="name">Epic Games nickname:</label>
+                    <input type="text" name="epicNickName" id="epicNickName" class="input">
+
+                    <div class="radio">
+                        <p>Select a platform:</p>
+
+                        <div id="platform">
+                            <div class="platform-box pc">
+                                <input type="radio" id="pc" class="platform" name="platform" value="pc" checked/>
+                                <label for="pc"><strong>PC</strong></label>
+                            </div>
+                            <div class="platform-box xbl">
+                                <input type="radio" id="xbl" class="platform" name="platform" value="xbl"/>
+                                <label for="xbl"><strong>Xbox Live</strong></label>
+                            </div>
+                            <div class="platform-box psn">
+                                <input type="radio" id="psn" class="platform" name="platform" value="psn"/>
+                                <label for="psn"><strong>PlayStation Network</strong></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submit" class="button">Submit</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- TODO Translate it -->
+        <div class="box-container">
+            <div class="box stats-box">
+                <h2>Player's statistics</h2>
+
+                <img src="public/img/loading.gif" class="loading" alt="Loading..." />
+
+                <div id="stats-general">
+                    <div id="stats-general-header">
+                        <span class="type-stats general">Stats Générales</span>
+                    </div>
+
+                    <div id="stats-general-content">
+                        <div class="stats-general-info">
+                            <span class="stats-title stats-title-big">Parties</span>
+                            <span class="stats-count stats-big stats-games">0</span>
+                        </div>
+
+                        <div class="stats-general-info">
+                            <span class="stats-title stats-title-big">Kills</span>
+                            <span class="stats-count stats-big stats-kills">0</span>
+                        </div>
+
+                        <div class="stats-general-info">
+                            <span class="stats-title stats-title-big">K/D</span>
+                            <span class="stats-count stats-big stats-kd">0</span>
+                        </div>
+
+                        <div class="stats-general-info">
+                            <span class="stats-title stats-title-big">Score</span>
+                            <span class="stats-count stats-big stats-score">0</span>
+                        </div>
+
+                        <div class="stats-general-info">
+                            <span class="stats-title stats-title-big">TOP 1</span>
+                            <span class="stats-count stats-big stats-top1">0</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="stats-type">
+                    <div class="stats-boxes">
+                        <div class="stats-header">
+                            <span class="stats-cat">Solo</span>
+                            <span class="stats-matchs stats-solo">
+                                <span class="number">0</span> Matchs
+                            </span>
+                        </div>
+        
+                        <div id="stats-classic-content">
+                            <div class="stats-classic-info">
+                                <span class="stats-title">TOP 1</span>
+                                <span class="stats-count stats-solo-top1">0</span>
+                            </div>
+        
+                            <div class="stats-classic-info">
+                                <span class="stats-title">TOP 10</span>
+                                <span class="stats-count stats-solo-top10">0</span>
+                            </div>
+        
+                            <div class="stats-classic-info">
+                                <span class="stats-title">TOP 25</span>
+                                <span class="stats-count stats-solo-top25">0</span>
+                            </div>
+                        </div>
+        
+                        <div class="stats-classic-more">
+                            <div class="stats-more-content">
+                                <span class="stats-more-title">Kills</span>
+                                <span class="stats-more-count stats-solo-kills">0</span>
+                                <div class="progressbar">
+                                    <div class="pink-progress" style="width: 100%;"></div>
+                                </div>
+                            </div>
+        
+                            <div class="stats-more-content">
+                                <span class="stats-more-title">K/D</span>
+                                <span class="stats-more-count stats-solo-kd">0</span>
+                                <div class="progressbar">
+                                    <div class="pink-progress" style="width: 100%;"></div>
+                                </div>
+                            </div>
+        
+                            <div class="stats-more-content">
+                                <span class="stats-more-title">Score</span>
+                                <span class="stats-more-count stats-solo-score">0</span>
+                                <div class="progressbar">
+                                    <div class="pink-progress" style="width: 100%;"></div>
+                                </div>
+                            </div>
+        
+                            <div class="stats-more-content">
+                                <span class="stats-more-title">Score par match</span>
+                                <span class="stats-more-count stats-solo-score-match">0</span>
+                                <div class="progressbar">
+                                    <div class="pink-progress" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="stats-boxes">
+                        <div class="stats-header">
+                            <span class="stats-cat">Duo</span>
+                            <span class="stats-matchs stats-duo">
+                                <span class="number">0</span> Matchs
+                            </span>
+                        </div>
+    
+                        <div id="stats-classic-content">
+                            <div class="stats-classic-info">
+                                <span class="stats-title">TOP 1</span>
+                                <span class="stats-count stats-duo-top1">0</span>
+                            </div>
+    
+                            <div class="stats-classic-info">
+                                <span class="stats-title">TOP 5</span>
+                                <span class="stats-count stats-duo-top5">0</span>
+                            </div>
+    
+                            <div class="stats-classic-info">
+                                <span class="stats-title">TOP 12</span>
+                                <span class="stats-count stats-duo-top12">0</span>
+                            </div>
+                        </div>
+    
+                        <div class="stats-classic-more">
+                            <div class="stats-more-content">
+                                <span class="stats-more-title">Kills</span>
+                                <span class="stats-more-count stats-duo-kills">0</span>
+                                <div class="progressbar">
+                                    <div class="pink-progress" style="width: 100%;"></div>
+                                </div>
+                            </div>
+    
+                            <div class="stats-more-content">
+                                <span class="stats-more-title">K/D</span>
+                                <span class="stats-more-count stats-duo-kd">0</span>
+                                <div class="progressbar">
+                                    <div class="pink-progress" style="width: 100%;"></div>
+                                </div>
+                            </div>
+    
+                            <div class="stats-more-content">
+                                <span class="stats-more-title">Score</span>
+                                <span class="stats-more-count stats-duo-score">0</span>
+                                <div class="progressbar">
+                                    <div class="pink-progress" style="width: 100%;"></div>
+                                </div>
+                            </div>
+    
+                            <div class="stats-more-content">
+                                <span class="stats-more-title">Score par match</span>
+                                <span class="stats-more-count stats-duo-score-match">0</span>
+                                <div class="progressbar">
+                                    <div class="pink-progress" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="stats-boxes">
+                        <div class="stats-header">
+                            <span class="stats-cat">Squad</span>
+                            <span class="stats-matchs stats-squad">
+                                <span class="number">0</span> Matchs
+                            </span>
+                        </div>
+    
+                        <div id="stats-classic-content">
+                            <div class="stats-classic-info">
+                                <span class="stats-title">TOP 1</span>
+                                <span class="stats-count stats-squad-top1">0</span>
+                            </div>
+    
+                            <div class="stats-classic-info">
+                                <span class="stats-title">TOP 3</span>
+                                <span class="stats-count stats-squad-top3">0</span>
+                            </div>
+    
+                            <div class="stats-classic-info">
+                                <span class="stats-title">TOP 6</span>
+                                <span class="stats-count stats-squad-top6">0</span>
+                            </div>
+                        </div>
+    
+                        <div class="stats-classic-more">
+                            <div class="stats-more-content">
+                                <span class="stats-more-title">Kills</span>
+                                <span class="stats-more-count stats-squad-kills">0</span>
+                                <div class="progressbar">
+                                    <div class="pink-progress" style="width: 100%;"></div>
+                                </div>
+                            </div>
+    
+                            <div class="stats-more-content">
+                                <span class="stats-more-title">K/D</span>
+                                <span class="stats-more-count stats-squad-kd">0</span>
+                                <div class="progressbar">
+                                    <div class="pink-progress" style="width: 100%;"></div>
+                                </div>
+                            </div>
+    
+                            <div class="stats-more-content">
+                                <span class="stats-more-title">Score</span>
+                                <span class="stats-more-count stats-squad-score">0</span>
+                                <div class="progressbar">
+                                    <div class="pink-progress" style="width: 100%;"></div>
+                                </div>
+                            </div>
+    
+                            <div class="stats-more-content">
+                                <span class="stats-more-title">Score par match</span>
+                                <span class="stats-more-count stats-squad-score-match">0</span>
+                                <div class="progressbar">
+                                    <div class="pink-progress" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="results"></div>
+
+    <script src="/public/js/stats.min.js"></script>
+</body>
+</html>

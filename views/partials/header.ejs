@@ -1,4 +1,4 @@
-<script src="/public/js/custom/alert.min.js"></script>
+<script src="/public/js/alert.min.js"></script>
 <%if (messages) { %>
     <%if (messages.warning) { %>
         <%if (messages.warning.length) { %>
@@ -19,13 +19,14 @@
 
 <nav>
     <ul>
-        <li <% if (title === 'Home') { %>class="active"<% } %>><a href="/">Home</a></li>
+        <li <%if (title === 'Home') { %>class="active"<% } %>><a href="/">Home</a></li>
+        <li <%if (title === 'Stats') { %>class="active"<% } %>><a href="/stats">See users statistics</a></li>
         <%if (userData) { %>
             <li class="right"><a href="/logout">Déconnexion</a></li>
-            <li class="<% if (title === 'Account') { %>active <% } %>right"><a href="/account">My account</a></li>
+            <li class="<%if (title === 'Account') { %>active <% } %>right"><a href="/account">My account</a></li>
         <% } else { %>
             <li class="
-                <% if (title === 'Member area') { %>active <% } %>right"><a href="member-area">Sign in</a></li>
+                <%if (title === 'Member area') { %>active <% } %>right"><a href="member-area">Sign in</a></li>
         <% } %>
     </ul>
 </nav>

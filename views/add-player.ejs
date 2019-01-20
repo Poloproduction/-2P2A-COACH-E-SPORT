@@ -4,16 +4,9 @@
         <title>My Fortnite Coach</title>
         <link rel="stylesheet" href="/public/css/global.css" />
         <link rel="stylesheet" href="/public/css/add-join-team.css" />
-        <link rel="stylesheet" href="/public/css/slick.css" />
-        <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css' />
-        <link rel="stylesheet" href='/public/css/selectize.css' />
         <link rel="stylesheet" href="/public/css/alert.css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="icon" type="image/x-icon" href="/public/img/favicon.png">
-
-        <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     </head>
 
     <body>
@@ -27,18 +20,17 @@
                     <h2>Add a player to your team</h2>
 
                     <!-- Display the numbers of places -->
-                    <span class="users-remaining">There are 10 places left in your team</span>
+                    <%if (userData[0].team.offer != 3) { %>
+                    <span class="users-remaining">There are <%= userData[0].team.offer * 5 - places %> places left in your team</span>
+                    <% } %>
 
                     <form method="post" class="add-form" action="/add-player">
                         <label for="email">Please type the email address of the person you want to invite:</label>
                         <input type="text" id="email" name="email" class="input" />
                         <button type="submit" class="button">Send an invitation !</button>
                     </form>
-                    
                 </div>
             </div>
         </div>
-
-        <script src="/public/js/custom/autocomplete.js"></script>
     </body>
 </html>

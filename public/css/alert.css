@@ -4,11 +4,12 @@
     left: 0;
     height: 150px;
     width: 100%;
-    max-width: 550px;
+    max-width: 580px;
     overflow: hidden;
     z-index: 2500;
     min-height: 65px;
     visibility: hidden;
+    font-family: 'Open Sans';
 }
 
 #alertMsg.visible {
@@ -43,6 +44,7 @@
     border-radius: 3px 3px 0 0;
     text-align: center;
     font-size: 17px;
+    font-family: 'BurbankBigCondensed';
 }
 
 .alert-close {
@@ -54,5 +56,6 @@
 }
 
 .alert-container {
-    padding: 0 50px;
+    padding: 0 20px;
+    font-size: 16px;
 }

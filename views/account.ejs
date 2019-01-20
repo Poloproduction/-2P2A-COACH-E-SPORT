@@ -4,9 +4,6 @@
         <title>My Fortnite Coach</title>
         <link rel="stylesheet" href="/public/css/global.css" />
         <link rel="stylesheet" href="/public/css/account.css" />
-        <link rel="stylesheet" href="/public/css/slick.css" />
-        <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css' />
-        <link rel="stylesheet" href='/public/css/selectize.css' />
         <link rel="stylesheet" href="/public/css/alert.css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="icon" type="image/x-icon" href="/public/img/favicon.png">
@@ -90,91 +87,66 @@
                     <div class="box">
                         <h2>My team: <%= userData[0].team.name %></h2>
 
-                        <!-- 
-                            TODO:
-                            If we are on the user profile, don't show "see user profile"
-                            If user is the team's coach, show "Kick" on all users except himself
-                            If someone else see the team page, he will not see teh boxes with "add a player"
-                        -->
+                        <%if (userData[0].team.coach_id == userData[0].id) { %>
+                            <a href="/delete-team" class="bye-team">Delete team</a>
+                        <% } else { %>
+                            <a href="/leave-team" class="bye-team">Leave team</a>
+                        <% } %>
 
-                        <div class="team-user-list">
-                            <div class="team-user owner">
-                                <div class="tu-avatar"><img src="/public/img/avatars/default.png" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <span class="tu-username"><i class="fa fa-shield" aria-hidden="true"></i> AllStormfy</span>
-                                    <a href="/">See coach profile</a>
+                        <% for (i = 0; i < teamMates.length + 1; i++) { %>
+                            <%if (i < teamMates.length) { %>
+                                <%if (userData[0].team.coach_id == teamMates[i].user_id) { %>
+                                    <div class="team-user owner">
+                                        <div class="team-user-content">
+                                            <div class="tu-avatar"><img src="/public/img/avatars/default.png" alt="Avatar"></div>
+                                            <div class="tu-user">
+                                                <span class="tu-username"><i class="fa fa-shield" aria-hidden="true"></i> 
+                                                    <%if (teamMates[i].pseudo) { %>
+                                                    <%= teamMates[i].pseudo %>
+                                                    <% } else { %>
+                                                    <%= teamMates[i].firstname + " " + teamMates[i].lastname[0] + "." %>
+                                                    <% } %>
+                                                </span>
+                                                <%if (userData[0].id != teamMates[i].user_id) { %>
+                                                <a href="/">See coach profile</a>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } else { %>
+                                    <div class="team-user">
+                                        <div class="team-user-content">
+                                            <div class="tu-avatar"><img src="/public/img/weapons/scar.png" alt="Avatar"></div>
+                                            <div class="tu-user">
+                                                <span class="tu-username">
+                                                    <%if (teamMates[i].pseudo) { %>
+                                                    <%= teamMates[i].pseudo %>
+                                                    <% } else { %>
+                                                    <%= teamMates[i].firstname + " " + teamMates[i].lastname[0] + "." %>
+                                                    <% } %>
+                                                
+                                                </span>
+                                                <%if (userData[0].id != teamMates[i].user_id) { %>
+                                                    <a href="/">See user profile</a>
+                                                <% } %>
+                                                <%if (userData[0].team.coach_id == userData[0].id) { %>
+                                                    <a href="/kick-team?id=<%= teamMates[i].user_id %>" class="kick">Kick</a>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
+                            <% } else if (userData[0].team.coach_id == userData[0].id && (teamMates.length < userData[0].team.offer * 5 || teamMates.offers == 3)) { %>
+                                <div class="team-user nobody">
+                                    <div class="team-user-content">
+                                        <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
+                                        <div class="tu-user">
+                                            <a href="/add-player" class="add">Add a player</a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-    
-                            <div class="team-user">
-                                <div class="tu-avatar"><img src="/public/img/weapons/scar.png" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <span class="tu-username">Mister Jingles</span>
-                                    <a href="/">See user profile</a>
-                                    <a href="/" class="kick">Kick</a>
-                                </div>
-                            </div>
-    
-                            <div class="team-user">
-                                <div class="tu-avatar"><img src="/public/img/weapons/m4.png" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <span class="tu-username">Ta mère en slip</span>
-                                    <a href="/">See user profile</a>
-                                    <a href="/" class="kick">Kick</a>
-                                </div>
-                            </div>
-    
-                            <div class="team-user nobody">
-                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <a href="/add-player" class="add">Add a player</a>
-                                </div>
-                            </div>
-    
-                            <div class="team-user nobody">
-                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <a href="/add-player" class="add">Add a player</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="team-user-list">
-                            <div class="team-user nobody">
-                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <a href="/add-player" class="add">Add a player</a>
-                                </div>
-                            </div>
-    
-                            <div class="team-user nobody">
-                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <a href="/add-player" class="add">Add a player</a>
-                                </div>
-                            </div>
-    
-                            <div class="team-user nobody">
-                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <a href="/add-player" class="add">Add a player</a>
-                                </div>
-                            </div>
-    
-                            <div class="team-user nobody">
-                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <a href="/add-player" class="add">Add a player</a>
-                                </div>
-                            </div>
-    
-                            <div class="team-user nobody">
-                                <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
-                                <div class="tu-user">
-                                    <a href="/add-player" class="add">Add a player</a>
-                                </div>
-                            </div>
-                        </div>
+                            <% } %>
+                        <% } %>
                     
                         <a href="/" class="button">Improve your subscription and get more users now !</a>
                     </div>
@@ -182,6 +154,6 @@
             <% } %>
         </div>
 
-        <script src="/public/js/custom/autocomplete.js"></script>
+        <script src="/public/js/autocomplete.js"></script>
     </body>
 </html>

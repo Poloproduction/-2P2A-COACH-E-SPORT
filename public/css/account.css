@@ -1,3 +1,11 @@
+form {
+    margin-bottom: 50px;
+}
+
+form .button {
+    position: absolute;
+}
+
 #team-buttons a {
 	display: inline-block;
     background: #9324c7;
@@ -37,32 +45,31 @@
 }
 
 .tu-avatar img {
-    border: 1px solid black;
+    border: 2px solid black;
     width: 50px;
     border-radius: 100%;
 }
 
 .owner .tu-avatar img {
-    border-width: 2px;
-    border-color: #b11e1e;
+    border: 2px solid #b11e1e;
 }
 
 .nobody .tu-avatar img {
     border: 2px dashed black;
 }
 
-.team-user-list {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0;
-}
-
 .team-user {
-    display: flex;
+    display: inline-block;
     background: rgba(255, 255, 255, 0.3);
-    width: 15%;
+    width: calc(15% - 4px);
+    margin: 20px 2.5%;
     padding: 5px 5px 0 5px;
     box-shadow: 0px 0px 5px -1px;
+    box-sizing: border-box;
+}
+
+.team-user-content {
+    display: flex;
 }
 
 .tu-user {
@@ -127,6 +134,25 @@ a.button:hover {
     background: #9324c7;
 }
 
+a.bye-team {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    display: block;
+    background: #9a2115;
+    line-height: 35px;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 0 10px;
+}
+
+a.bye-team:hover {
+    background: #e23625;
+}
+
 @media only screen and (max-width: 967px) {
     .avatar {
         display: none;
@@ -134,12 +160,6 @@ a.button:hover {
 
     form .input.small-label {
         width: 100%;
-    }
-
-    .team-user-list {
-        display: inline-block;
-        width: 100%;
-        margin: 0;
     }
 
     .team-user {

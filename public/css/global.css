@@ -67,6 +67,7 @@ nav ul li a:hover {
 
 /* Box */
 .box {
+    position: relative;
 	background: rgba(93, 74, 186, 0.8);
     padding: 20px;
     margin: 30px 0;
@@ -128,8 +129,7 @@ form .input[type=date] {
 
 form .button {
 	background: #520f72;
-	float: right;
-    margin: 15px 0 0 0;
+	position: absolute;
     border: none;
     padding: 2px 20px;
     color: #fff;
@@ -139,7 +139,9 @@ form .button {
     cursor: pointer;
     height: 33px;
 	line-height: 33px;
-	font-family: 'BurbankBigCondensed';
+    font-family: 'BurbankBigCondensed';
+    right: 20px;
+    bottom: 20px;
 }
 
 form .button:hover {
@@ -156,5 +158,17 @@ form .radio label {
 		width: 100%;
 		padding: 20px;
 		box-sizing: border-box;
+    }
+
+    .box-container {
+        display: block;
+    }
+
+    .box.box-65 {
+        width: 100%;
+    }
+    
+    .box.box-30 {
+        width: 100%;
     }
 }

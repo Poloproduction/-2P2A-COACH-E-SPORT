@@ -19,9 +19,10 @@ form.join-form label {
     margin: 10px 0;
 }
 .join-form .input.join {
-    width: 180px;
+    width: 200px;
     margin: 0 auto;
     font-size: 50px;
+    text-align: center;
 }
 
 .join-form .button {

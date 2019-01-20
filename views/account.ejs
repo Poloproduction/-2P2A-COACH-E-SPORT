@@ -89,16 +89,19 @@
                 <div class="box-container">
                     <div class="box">
                         <h2>My team: <%= userData[0].team.name %></h2>
-                        
-                            <% for (i = 0; i < userData[0].team.offer * 5; i++) { %>
-                                <% if (i%5 === 0) { %>
-                                <div class="team-user-list">
-                                <% } %>
 
-                                <% if (i < teamMates.length) { %>
-                                    <% if (userData[0].team.coach_id == teamMates[i].user_id) { %>
-                                        <div class="team-user owner">
-                                            <div class="tu-avatar"><img src="/public/img/avatars/default.png" alt="Avatar de"></div>
+                        <% if (userData[0].team.coach_id == userData[0].id) { %>
+                            <a href="/delete-team" class="bye-team">Delete team</a>
+                        <% } else { %>
+                            <a href="/leave-team" class="bye-team">Leave team</a>
+                        <% } %>
+
+                        <% for (i = 0; i < teamMates.length + 1; i++) { %>
+                            <% if (i < teamMates.length) { %>
+                                <% if (userData[0].team.coach_id == teamMates[i].user_id) { %>
+                                    <div class="team-user owner">
+                                        <div class="team-user-content">
+                                            <div class="tu-avatar"><img src="/public/img/avatars/default.png" alt="Avatar"></div>
                                             <div class="tu-user">
                                                 <span class="tu-username"><i class="fa fa-shield" aria-hidden="true"></i> 
                                                     <% if (teamMates[i].pseudo) { %>
@@ -112,9 +115,11 @@
                                                 <% } %>
                                             </div>
                                         </div>
-                                    <% } else { %>
-                                        <div class="team-user">
-                                            <div class="tu-avatar"><img src="/public/img/weapons/scar.png" alt="Avatar de"></div>
+                                    </div>
+                                <% } else { %>
+                                    <div class="team-user">
+                                        <div class="team-user-content">
+                                            <div class="tu-avatar"><img src="/public/img/weapons/scar.png" alt="Avatar"></div>
                                             <div class="tu-user">
                                                 <span class="tu-username">
                                                     <% if (teamMates[i].pseudo) { %>
@@ -128,30 +133,25 @@
                                                     <a href="/">See user profile</a>
                                                 <% } %>
                                                 <% if (userData[0].team.coach_id == userData[0].id) { %>
-                                                    <a href="/" class="kick">Kick</a>
+                                                    <a href="/kick-team?id=<%= teamMates[i].user_id %>" class="kick">Kick</a>
                                                 <% } %>
                                             </div>
                                         </div>
-                                    <% } %>
-                                <% } else if (userData[0].team.coach_id == userData[0].id) { %>
-                                    <div class="team-user nobody">
+                                    </div>
+                                <% } %>
+                            <% } else if (userData[0].team.coach_id == userData[0].id && (teamMates.length < userData[0].team.offer * 5 || teamMates.offers == 3)) { %>
+                                <div class="team-user nobody">
+                                    <div class="team-user-content">
                                         <div class="tu-avatar"><img src="/public/img/avatars/nobody.jpg" alt="Avatar de"></div>
                                         <div class="tu-user">
                                             <a href="/add-player" class="add">Add a player</a>
                                         </div>
                                     </div>
-                                <% } %>
-
-                                <% if (i%5 === 4) { %>
                                 </div>
-                                <% } %>
                             <% } %>
+                        <% } %>
                     
                         <a href="/" class="button">Improve your subscription and get more users now !</a>
-                        <!-- BEGINNING OF PAUL CUVILLIER'S MODIFICATIONS ! BE CAREFUL I'M BAD AND IT CAN BOKE THE CODE !! -->
-                        <br/>
-                        <a href="/leave-team" class="button">Leave / delete team (css to improve...)</a>
-                        <!-- END ... -->
                     </div>
                 </div>
             <% } %>

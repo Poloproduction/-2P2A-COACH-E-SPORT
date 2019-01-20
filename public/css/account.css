@@ -2,6 +2,10 @@ form {
     margin-bottom: 50px;
 }
 
+form .button {
+    position: absolute;
+}
+
 #team-buttons a {
 	display: inline-block;
     background: #9324c7;

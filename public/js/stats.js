@@ -88,7 +88,13 @@ $(function(){
 });
 
 $('.input').on('input', function(e) {
-    $('button').html('Find ' + $(e.target).val() + '\'s stats');
+    if($(e.target).val()) {
+        $('button').html('Find ' + $(e.target).val() + '\'s stats');
+    }
+    else {
+        $('button').html('Find player\'s stats');
+    }
+    
 });
 
 $('.platform-box').click(function() {

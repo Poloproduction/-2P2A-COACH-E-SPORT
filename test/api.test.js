@@ -105,9 +105,9 @@ describe("Test the /join post", () => {
       done();
   });
 
-  test('It should redirect to / because user already exist', async () => {
+  test('It should redirect to /member-area because user already exist', async () => {
     var data = await request(app).post("/join").send(reqo);
-    expect(data.text).toEqual('Found. Redirecting to /');
+    expect(data.text).toEqual('Found. Redirecting to /member-area');
   });
 });
 

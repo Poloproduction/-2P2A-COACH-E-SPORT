@@ -34,7 +34,7 @@ $(function(){
                 $('.loading').hide();
 
                 if (res === true) {
-                    $('.stats-box h2').html($epicNickName + '\'s statistics');
+                    $('.stats-box h2').html(data.epicUserHandle + '\'s statistics');
                     $('#stats-general').show();
                     $('#stats-type').css('display', 'flex');
                 } else {

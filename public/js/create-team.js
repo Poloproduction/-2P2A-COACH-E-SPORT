@@ -1,5 +1,10 @@
 $('.input').on('input', function(e) {
-    $('button').html('Create ' + $(e.target).val());
+    if($(e.target).val()) {
+        $('button').html('Create ' + $(e.target).val());
+    }
+    else {
+        $('button').html('Create your team');
+    }
 });
 
 $('.offer-box').click(function() {

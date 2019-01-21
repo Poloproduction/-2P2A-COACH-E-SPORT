@@ -21,6 +21,8 @@ var bad_reqo_connection = {
   password: "badtest"
 };
 
+var coockie;
+
 var testUser = "";
 const databaseUrl = process.env.DATABASE_URL || process.env.LOCAL_DATABASE_URL;
 
@@ -148,6 +150,31 @@ describe("Test the login post", () => {
   });
   
 });
+
+describe("Test change my private informations", () => {
+  test("It should set the coockie var", async () => {
+    const data = await request(app)
+      .post("/login")
+      .send(reqo_connection)
+      .then(res => {
+          coockie = res
+          .headers['set-cookie'][0]
+          .split(',')
+          .map(item=> item.split(';')[0])
+          .join(';')
+      });
+      console.log(coockie);
+  })
+  test("It should redirect to /account", async () => {
+    request(app)
+        .get('/login')
+        .set('Cookie',coockie)
+        .then(res => {
+          res.headers['location'][0]
+          expect(res.headers['location'][0]).toEqual('/account');
+        })
+  })
+})
 
 
 // ----------------------------------------------------------------

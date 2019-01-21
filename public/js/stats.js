@@ -34,7 +34,7 @@ $(function(){
                 $('.loading').hide();
 
                 if (res === true) {
-                    $('.stats-box h2').html($epicNickName + '\'s statistics');
+                    $('.stats-box h2').html(data.epicUserHandle + '\'s statistics');
                     $('#stats-general').show();
                     $('#stats-type').css('display', 'flex');
                 } else {
@@ -88,7 +88,13 @@ $(function(){
 });
 
 $('.input').on('input', function(e) {
-    $('button').html('Find ' + $(e.target).val() + '\'s stats');
+    if($(e.target).val()) {
+        $('button').html('Find ' + $(e.target).val() + '\'s stats');
+    }
+    else {
+        $('button').html('Find player\'s stats');
+    }
+    
 });
 
 $('.platform-box').click(function() {

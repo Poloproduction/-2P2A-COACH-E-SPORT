@@ -68,7 +68,7 @@ it('change the public information', () => {
   cy.get('#favorite-city').type('Loot{downarrow}{downarrow}{enter}');
   cy.get('body > div.wrap > div.box-container > div.box.box-65 > form > button').click();
 })
-
+/*
 it('should create a team', () => {
   cy.get('body > div.wrap > nav > ul > li.right > a').click();
   cy.get('#username').type('antonin@hotmail.fr');
@@ -79,17 +79,9 @@ it('should create a team', () => {
   cy.get('#gold').click();
   cy.get('body > div.wrap > div > div > form > button').click();
   var team_id = uuidv4();
-  client.query('INSERT INTO team (id, coach_email, name, offer) VALUES ($1, $2, $3, $4)', [team_id, req.user[0].email, payment.transactions[0].custom, payment.transactions[0].description], function(err, result) {
-    if(err){console.log(err);}
-    else {
-      client.query('COMMIT')
-    
-      req.user[0].team.id = team_id;
-    }
-  })
-  
-  
+ 
 })
+*/
   // https://on.cypress.io/interacting-with-elements
 /*
   it('.type() - type into a DOM element', () => {

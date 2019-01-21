@@ -20,6 +20,76 @@ it('click on sign in', () => {
   cy.get('#password').type('alex');
   cy.get('.submit').click();
 })
+
+it('log in in the app', () => {
+  cy.get('body > div.wrap > nav > ul > li.right > a').click();
+  cy.get('#username').type('alex@hotmail.fr');
+  cy.get('#password').type('alex');
+  cy.get('#member-area > form > div > div:nth-child(2) > button').click();
+})
+
+it('change private information', () => {
+  cy.get('body > div.wrap > nav > ul > li.right > a').click();
+  cy.get('#username').type('alex@hotmail.fr');
+  cy.get('#password').type('alex');
+  cy.get('#member-area > form > div > div:nth-child(2) > button').click();
+  cy.get('#firstname').clear();
+  cy.get('#firstname').type('Antonin');
+  cy.get('#lastname').clear();
+  cy.get('#lastname').type('Boinega');
+  cy.get('#email').clear();
+  cy.get('#email').type('antonin@hotmail.fr');
+  cy.get('#birthday').type('1995-03-23');
+  cy.get('body > div.wrap > div.box-container > div.box.box-30 > form > button').click();
+})
+
+it('log with the new email', () => {
+  cy.get('body > div.wrap > nav > ul > li.right > a').click();
+  cy.get('#username').type('antonin@hotmail.fr');
+  cy.get('#password').type('alex');
+  cy.get('#member-area > form > div > div:nth-child(2) > button').click();
+})
+
+it('try to log with the first email', () => {
+  cy.get('body > div.wrap > nav > ul > li.right > a').click();
+  cy.get('#username').type('alex@hotmail.fr');
+  cy.get('#password').type('alex');
+  cy.get('#member-area > form > div > div:nth-child(2) > button').click();
+})
+
+it('change the public information', () => {
+  cy.get('body > div.wrap > nav > ul > li.right > a').click();
+  cy.get('#username').type('antonin@hotmail.fr');
+  cy.get('#password').type('alex');
+  cy.get('#member-area > form > div > div:nth-child(2) > button').click();
+  cy.get('#iam').select('Amateur').should('have.value','Amateur');
+  cy.get('#pseudo').type('Shuthim');
+  cy.get('#favorite-weapon').type('Scar{downarrow}{downarrow}{enter}');
+  cy.get('#favorite-city').type('Loot{downarrow}{downarrow}{enter}');
+  cy.get('body > div.wrap > div.box-container > div.box.box-65 > form > button').click();
+})
+
+it('should create a team', () => {
+  cy.get('body > div.wrap > nav > ul > li.right > a').click();
+  cy.get('#username').type('antonin@hotmail.fr');
+  cy.get('#password').type('alex');
+  cy.get('#member-area > form > div > div:nth-child(2) > button').click();
+  cy.get('#team-buttons > a:nth-child(1)').click();
+  cy.get('#name').type('2P2A');
+  cy.get('#gold').click();
+  cy.get('body > div.wrap > div > div > form > button').click();
+  var team_id = uuidv4();
+  client.query('INSERT INTO team (id, coach_email, name, offer) VALUES ($1, $2, $3, $4)', [team_id, req.user[0].email, payment.transactions[0].custom, payment.transactions[0].description], function(err, result) {
+    if(err){console.log(err);}
+    else {
+      client.query('COMMIT')
+    
+      req.user[0].team.id = team_id;
+    }
+  })
+  
+  
+})
   // https://on.cypress.io/interacting-with-elements
 /*
   it('.type() - type into a DOM element', () => {

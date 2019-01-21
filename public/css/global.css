@@ -97,7 +97,8 @@ nav ul li a:hover {
 
 /* Form */
 form {
-	font-family: 'Open Sans';
+    font-family: 'Open Sans';
+    margin-bottom: 50px;
 }
 
 form label {

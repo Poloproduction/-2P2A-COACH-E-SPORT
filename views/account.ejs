@@ -2,9 +2,9 @@
 <html>
     <head>
         <title>My Fortnite Coach</title>
-        <link rel="stylesheet" href="/public/css/global.css" />
-        <link rel="stylesheet" href="/public/css/account.css" />
-        <link rel="stylesheet" href="/public/css/alert.css" />
+        <link rel="stylesheet" href="/public/css/global.min.css" />
+        <link rel="stylesheet" href="/public/css/account.min.css" />
+        <link rel="stylesheet" href="/public/css/alert.min.css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="icon" type="image/x-icon" href="/public/img/favicon.png">
 
@@ -147,8 +147,10 @@
                                 </div>
                             <% } %>
                         <% } %>
-                    
-                        <a href="/" class="button">Improve your subscription and get more users now !</a>
+                        
+                        <%if (userData[0].team.offer != 3) { %>
+                        <a href="/upgrade-offer" class="button">Improve your subscription and get more users now !</a>
+                        <% } %>
                     </div>
                 </div>
             <% } %>

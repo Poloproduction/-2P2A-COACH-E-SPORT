@@ -18,32 +18,26 @@
 
             <div class="box-container">
                 <div class="box">
-                    <h2>Create a team: </h2>
+                    <h2>Upgrade <%= userData[0].team.name %></h2>
 
                     <form method="post" action="/pay">
-                        <label for="name">Team name:</label>
-                        <input type="text" name="name" id="name" class="input" required/>
-
                         <div class="radio">
-                            <p>Select an offer:</p>
-
-                            <div class="offer-box bronze">
-                                <input type="radio" id="bronze" class="offer" name="offer" value="1" checked/>
-                                <label for="bronze"><strong>Bronze</strong> (up to 5 members) <small>- only 35$ for your entire life !</small></label>
-                            </div>
+                            <p>You team has currently <b><%= offerName %></b> offer. Please select the new offer you want to subscribe:</p>
                             
+                            <%if (userData[0].team.offer == 1) { %>
                             <div class="offer-box silver">
-                                <input type="radio" id="silver" class="offer" name="offer" value="2" />
-                                <label for="silver"><strong>Silver</strong> (up to 10 members) <small>- only 100$ for your entire life !</small></label>
+                                <input type="radio" id="silver" class="offer" name="upgrade" value="2" />
+                                <label for="silver"><strong>Silver</strong> (up to 10 members) <small>- only <s>100$</s> 80$ for your entire life !</small></label>
                             </div>
+                            <% } %>
     
                             <div class="offer-box gold">
-                                <input type="radio" id="gold" class="offer" name="offer" value="3" />
+                                <input type="radio" id="gold" class="offer" name="upgrade" value="3" />
                                 <label for="gold"><strong>Gold</strong> (as many members as you want) <small>- only 350$ for your entire life !</small></label>
                             </div>
                         </div>
 
-                        <button type="submit" class="button">Create your team</button>
+                        <button type="submit" class="button">Upgrade your team</button>
                     </form>
                 </div>
             </div>

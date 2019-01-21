@@ -49,6 +49,7 @@ body {
 
 #member-area .box form {
 	background: rgba(210, 166, 130, 0.8);
+	margin: 0;
 	padding: 20px;
 }
 

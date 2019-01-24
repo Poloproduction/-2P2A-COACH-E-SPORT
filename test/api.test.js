@@ -12,8 +12,18 @@ var reqo = {
       username: "alexandre@hotmail.fr",
       password: "test"
     };
+var initCookie = {
+      firstname: "cookie",
+      lastname: "cookie",
+      username: "cookie@hotmail.fr",
+      password: "test"
+    };  
 var reqo_connection = {
   username: "alexandre@hotmail.fr",
+  password: "test"
+};
+var cookie_connection = {
+  username: "cookie@hotmail.fr",
   password: "test"
 };
 var bad_reqo_connection = {
@@ -31,6 +41,19 @@ const pool = new Pool({
 });
 
 // ----------------------------------------------------------------------------------------------
+beforeAll(async () => {
+  await request(app).post("/join").send(initCookie);
+  await request(app)
+      .post("/login")
+      .send(cookie_connection)
+      .then(res => {
+          coockie = res
+          .headers['set-cookie'][0]
+          .split(',')
+          .map(item => item.split(';')[0])
+          .join(';')
+      });
+})
 
 describe("Test the get functions", function() {
   test("Get / respond 200", function(done) {
@@ -152,27 +175,18 @@ describe("Test the login post", () => {
 });
 
 describe("Test change my private informations", () => {
-  test("It should set the coockie var", async () => {
-    const data = await request(app)
-      .post("/login")
-      .send(reqo_connection)
-      .then(res => {
-          coockie = res
-          .headers['set-cookie'][0]
-          .split(',')
-          .map(item=> item.split(';')[0])
-          .join(';')
-      });
-      console.log(coockie);
-  })
   test("It should redirect to /account", async () => {
     request(app)
         .get('/login')
         .set('Cookie',coockie)
         .then(res => {
           res.headers['location'][0]
-          expect(res.headers['location'][0]).toEqual('/account');
+          expect(res.headers['location']).toEqual('/account');
         })
+  })
+  test("It should set my birthday to 12/08/94", async () => {
+    //const data = await request(app)
+      //  .post()
   })
 })
 

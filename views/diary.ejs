@@ -2,7 +2,7 @@
 <html>
     <head>
         <%- include partials/global-head.ejs %>
-        <link rel="stylesheet" href="/public/css/team-form.min.css" />
+        <link rel="stylesheet" href="/public/css/diary.css" />
     </head>
 
     <body>
@@ -14,16 +14,44 @@
             <div class="box">
                 <h2>My team diary</h2>
 
-                Lorem Ipsum dolor sit amet.
+                <a href="/add-training" class="create-event">Create event</a>
+
+                <p>
+                    Boxes caption:<br />
+                    <span class="caption red"></span> Competition<br />
+                    <span class="caption green"></span> Training<br />
+                    <span class="caption orange"></span> Meeting
+                </p>
             </div>
 
-            <div class="box diary-box">
+            <div class="box diary-box red">
                 <div class="diary-date">
-                    Monday 4th March 2019
+                    Wednesday 6th March 2019 <span class="hour"><i class="fa fa-clock-o"></i> 07:00 PM - 09:00 PM</span>
                 </div>
 
                 <p>
+                    National competition versus "Frightful Team"
+                </p>
+            </div>
 
+                
+            <div class="box diary-box orange">
+                <div class="diary-date">
+                    Monday 4th March 2019 <span class="hour"><i class="fa fa-clock-o"></i> 02:00 PM - 04:00 PM</span>
+                </div>
+
+                <p>
+                    We have recruited a new player, let's welcome him !
+                </p>
+            </div>
+
+            <div class="box diary-box green">
+                <div class="diary-date">
+                    Monday 4th March 2019 <span class="hour"><i class="fa fa-clock-o"></i> 10:00 AM - 12:00 AM</span>
+                </div>
+
+                <p>
+                    Training to prepare the competition
                 </p>
             </div>
         </div>

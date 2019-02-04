@@ -12,14 +12,35 @@ var reqo = {
       username: "alexandre@hotmail.fr",
       password: "test"
     };
+var initCookie = {
+      firstname: "cookie",
+      lastname: "cookie",
+      username: "cookie@hotmail.fr",
+      password: "test"
+    };  
+var updatePrivate = {
+      firstname: "cookie",
+      lastname: "cookie",
+      email: "cookie@hotmail.fr",
+      birthday: '1994/08/12'
+    };  
 var reqo_connection = {
   username: "alexandre@hotmail.fr",
+  password: "test"
+};
+var cookie_connection = {
+  username: "cookie@hotmail.fr",
   password: "test"
 };
 var bad_reqo_connection = {
   username: "bad@hotmail.fr",
   password: "badtest"
 };
+
+var create_team_test = {
+  name : "2P2Ateam",
+  offer : "bronze"
+}
 
 var coockie;
 
@@ -31,6 +52,19 @@ const pool = new Pool({
 });
 
 // ----------------------------------------------------------------------------------------------
+beforeAll(async () => {
+  await request(app).post("/join").send(initCookie);
+  await request(app)
+      .post("/login")
+      .send(cookie_connection)
+      .then(res => {
+          coockie = res
+          .headers['set-cookie'][0]
+          .split(',')
+          .map(item => item.split(';')[0])
+          .join(';')
+      });
+})
 
 describe("Test the get functions", function() {
   test("Get / respond 200", function(done) {
@@ -152,39 +186,59 @@ describe("Test the login post", () => {
 });
 
 describe("Test change my private informations", () => {
-  test("It should set the coockie var", async () => {
-    const data = await request(app)
-      .post("/login")
-      .send(reqo_connection)
-      .then(res => {
-          coockie = res
-          .headers['set-cookie'][0]
-          .split(',')
-          .map(item=> item.split(';')[0])
-          .join(';')
-      });
-      console.log(coockie);
-  })
   test("It should redirect to /account", async () => {
     request(app)
         .get('/login')
         .set('Cookie',coockie)
         .then(res => {
           res.headers['location'][0]
-          expect(res.headers['location'][0]).toEqual('/account');
+          expect(res.headers['location']).toEqual('/account');
         })
   })
+  test("It should set my birthday to 12/08/94", async () => {
+    request(app)
+        .post('/update-private-infos')
+        .send(updatePrivate)
+        .set('Cookie',coockie);
+    try{
+      const client = await pool.connect()
+      await client.query('BEGIN')
+      await JSON.stringify(client.query('SELECT * FROM "users" WHERE "email"=$1', [updatePrivate.email], function(err, result) {
+        var noSpace = (result.rows[0].birthday);
+        console.log(noSpace);
+      }));
+      client.release();
+    } 
+    catch(e){throw(e)}
+  })
+})
+
+describe("Test create team", () => {
+  test("It should stay on /create-team", async() => {
+    request(app)
+      .get('/create-team')
+      .set('Cookie',coockie)
+      .expect(200)
+      .then(res => {
+        expect(res.headers['content-type']).toBe('text/html; charset=utf-8');
+        console.log(res.headers['content-type']);
+      })
+})
+  test("It should redirect on paypal",async() => {
+    request(app)
+      .post("/pay")
+      .send(create_team_test)
+  })         
 })
 
 
 // ----------------------------------------------------------------
-
 describe('End of tests', ()=> {
   test('Delete the testUser', async()=> {
     try{
       const client = await pool.connect()
       await client.query('BEGIN')
-      await client.query('DELETE FROM "users" WHERE "email" = $1', [testUser], function(err, result) {
+      await client.query('DELETE FROM "users" WHERE "email" = $1', [reqo.username], function(err, result) {
         expect(result.rowCount).toBe(1);
         client.query('COMMIT')
       });
@@ -203,11 +257,31 @@ describe('End of tests', ()=> {
     } 
     catch(e){throw(e)}
   })
+
+
+  test('Delete the cookieUser', async()=> {
+    try{
+      const client = await pool.connect()
+      await client.query('BEGIN')
+      await client.query('DELETE FROM "users" WHERE "email" = $1', [initCookie.username], function(err, result) {
+        expect(result.rowCount).toBe(1);
+        client.query('COMMIT')
+      });
+      client.release();
+    } 
+    catch(e){throw(e)}
+  })
+  test('Table users does not contains the testUser', async()=> {
+    try{
+      const client = await pool.connect()
+      await client.query('BEGIN')
+      await JSON.stringify(client.query('SELECT * FROM "users" WHERE "email"=$1', [initCookie.username], function(err, result) {
+        expect(result.rowCount).toBe(0);
+      }));
+      client.release();
+    } 
+    catch(e){throw(e)}
+  })
 })
 
 // ----------------------------------------------------------------------
-
-afterAll((done) => {
-  app.close();
-  done();
-});

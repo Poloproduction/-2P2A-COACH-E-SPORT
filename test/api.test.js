@@ -24,7 +24,7 @@ var bad_reqo_connection = {
 var coockie;
 
 var testUser = "";
-const databaseUrl = process.env.DATABASE_URL || process.env.LOCAL_DATABASE_URL;
+const databaseUrl = process.env.DATABASE_URL || 'postgres://postgres:mysecretpassword@localhost:5432/postgres';
 
 const pool = new Pool({ 
       connectionString: databaseUrl,

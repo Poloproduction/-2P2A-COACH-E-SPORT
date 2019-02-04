@@ -240,3 +240,23 @@
     font-weight: bold;
     font-size: 18px;
 }
+
+/* Responsive */
+@media only screen and (max-width: 1240px) {
+    .stats-boxes {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .stats-general-info {
+        width: 100%;
+        padding: 30px;
+        float: left;
+        box-sizing: border-box;
+        background: #0e183c;
+    }
+
+    .platform-box {
+        width: 100%;
+    }
+}

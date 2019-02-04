@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>My Fortnite Coach</title>
-        <link rel="stylesheet" href="/public/css/global.min.css" />
+        <%- include partials/global-head.ejs %>
         <link rel="stylesheet" href="/public/css/team-form.min.css" />
-        <link rel="stylesheet" href="/public/css/alert.min.css" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-        <link rel="icon" type="image/x-icon" href="/public/img/favicon.png">
     </head>
 
     <body>
@@ -15,21 +11,19 @@
             <%- include partials/header.ejs %>
             <!-- NAVIGATION -->
 
-            <div class="box-container">
-                <div class="box">
-                    <h2>Add a player to your team</h2>
+            <div class="box">
+                <h2>Add a player to your team</h2>
 
-                    <!-- Display the numbers of places -->
-                    <%if (userData[0].team.offer != 3) { %>
-                    <span class="users-remaining">There are <%= userData[0].team.offer * 5 - places %> places left in your team</span>
-                    <% } %>
+                <!-- Display the numbers of places -->
+                <%if (userData[0].team.offer != 3) { %>
+                <span class="users-remaining">There are <%= userData[0].team.offer * 5 - places %> places left in your team</span>
+                <% } %>
 
-                    <form method="post" class="add-form" action="/add-player">
-                        <label for="email">Please type the email address of the person you want to invite:</label>
-                        <input type="text" id="email" name="email" class="input" />
-                        <button type="submit" class="button">Send an invitation !</button>
-                    </form>
-                </div>
+                <form method="post" class="add-form" action="/add-player">
+                    <label for="email">Please type the email address of the person you want to invite:</label>
+                    <input type="text" id="email" name="email" class="input" />
+                    <button type="submit" class="button">Send an invitation !</button>
+                </form>
             </div>
         </div>
     </body>

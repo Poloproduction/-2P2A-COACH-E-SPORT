@@ -2,7 +2,6 @@
 <html>
     <head>
         <%- include partials/global-head.ejs %>
-        <link rel="stylesheet" href="/public/css/diary.css" />
     </head>
 
     <body>
@@ -14,46 +13,39 @@
             <div class="box">
                 <h2>My team diary</h2>
 
-                <a href="/add-training" class="create-event">Create event</a>
+                <%if (userData[0].team.coach_id == userData[0].id) { %>
+                <a href="/create-event" class="right-button">Create event</a>
+                <% } %>
 
                 <p>
                     Boxes caption:<br />
-                    <span class="caption red"></span> Competition<br />
-                    <span class="caption green"></span> Training<br />
-                    <span class="caption orange"></span> Meeting
+                    <% for (i = 0; i < eventTypes.length; i++) { %>
+                    <span class="caption <%= eventTypes[i].event_color %>"></span> <%= eventTypes[i].event_type_label %><br />
+                    <% } %>
                 </p>
-            </div>
-
-            <div class="box diary-box red">
-                <div class="diary-date">
-                    Wednesday 6th March 2019 <span class="hour"><i class="fa fa-clock-o"></i> 07:00 PM - 09:00 PM</span>
-                </div>
 
                 <p>
-                    National competition versus "Frightful Team"
+                    <%if (!teamEvents) { %>
+                        There is no event for your team yet, come later !
+                    <% } %>
                 </p>
             </div>
 
-                
-            <div class="box diary-box orange">
-                <div class="diary-date">
-                    Monday 4th March 2019 <span class="hour"><i class="fa fa-clock-o"></i> 02:00 PM - 04:00 PM</span>
+            <% for (i = 0; i < teamEvents.length; i++) { %>
+                <div class="box diary-box <%= teamEvents[i].color %>">
+                    <div class="diary-date">
+                            <%= teamEvents[i].date.toLocaleDateString("en-US", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}) %>
+                            <span class="hour">
+                                <i class="fa fa-clock-o"></i>
+                                <%= teamEvents[i].date.toLocaleTimeString("en-US", {hour: '2-digit', minute:'2-digit'}) %>
+                            </span>
+                    </div>
+    
+                    <p>
+                        <%= teamEvents[i].text %>
+                    </p>
                 </div>
-
-                <p>
-                    We have recruited a new player, let's welcome him !
-                </p>
-            </div>
-
-            <div class="box diary-box green">
-                <div class="diary-date">
-                    Monday 4th March 2019 <span class="hour"><i class="fa fa-clock-o"></i> 10:00 AM - 12:00 AM</span>
-                </div>
-
-                <p>
-                    Training to prepare the competition
-                </p>
-            </div>
+            <% } %>
         </div>
     </body>
 </html>

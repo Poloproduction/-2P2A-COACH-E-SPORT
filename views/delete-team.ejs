@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>My Fortnite Coach</title>
-        <link rel="stylesheet" href="/public/css/global.min.css" />
+        <%- include partials/global-head.ejs %>
         <link rel="stylesheet" href="/public/css/team-form.min.css" />
-        <link rel="stylesheet" href="/public/css/alert.min.css" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-        <link rel="icon" type="image/x-icon" href="/public/img/favicon.png">
     </head>
 
     <body>
@@ -15,17 +11,15 @@
             <%- include partials/header.ejs %>
             <!-- NAVIGATION -->
 
-            <div class="box-container">
-                <div class="box">
-                    <h2>Delete my Team</h2>
+            <div class="box">
+                <h2>Delete my Team</h2>
 
-                    <form method="post" class="delete-form" action="/delete-team">
-                        <label for="email">Please enter your email to confirm the deletion :</label>
-                        <label for="email">WARNING ! This action is irrevocable..</label>
-                        <input type="text" id="email" name="email" class="input" />
-                        <button type="submit" class="button">I'm sure !</button>
-                    </form>
-                </div>
+                <form method="post" class="delete-form" action="/delete-team">
+                    <label for="email">Please enter your email to confirm the deletion :</label>
+                    <label for="email">WARNING ! This action is irrevocable..</label>
+                    <input type="text" id="email" name="email" class="input" />
+                    <button type="submit" class="button">I'm sure !</button>
+                </form>
             </div>
         </div>
     </body>

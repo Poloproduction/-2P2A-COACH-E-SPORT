@@ -1,7 +1,7 @@
 // default values
 var dropDownValue = 'pc';
 
-$(function(){
+$(function() {
     $('#submit').click(function(e) {
         e.preventDefault();
 
@@ -35,8 +35,12 @@ $(function(){
 
                 if (res === true) {
                     $('.stats-box h2').html(data.epicUserHandle + '\'s statistics');
+                    
                     $('#stats-general').show();
-                    $('#stats-type').css('display', 'flex');
+
+                    var x = window.matchMedia("(max-width: 1240px)");
+                    responsiveStats(x);
+                    x.addListener(responsiveStats);
                 } else {
                     $('.stats-box').hide();
                 }
@@ -108,3 +112,13 @@ $('input[type=radio]').click(function() {
 	$('.platform-box').removeClass('selected');
     $(this).parent().toggleClass('selected');
 });
+
+function responsiveStats(x) {
+    if (x.matches) {
+        $('#stats-type').css('display', 'block');
+        $('#stats-general-content').css('display', 'block');
+    } else {
+        $('#stats-type').css('display', 'flex');
+        $('#stats-general-content').css('display', 'flex');
+    }
+}

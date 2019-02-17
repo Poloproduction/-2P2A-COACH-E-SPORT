@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include partials/global-head.ejs %>
+    </head>
+
+    <body>
+        <div class="wrap">
+            <!-- NAVIGATION -->
+            <%- include partials/header.ejs %>
+            <!-- NAVIGATION -->
+
+            <div class="box">
+                <h2>My team diary</h2>
+
+                <%if (userData[0].team.coach_id == userData[0].id) { %>
+                <a href="/create-event" class="right-button">Create event</a>
+                <% } %>
+
+                <p>
+                    Boxes caption:<br />
+                    <% for (i = 0; i < eventTypes.length; i++) { %>
+                    <span class="caption <%= eventTypes[i].event_color %>"></span> <%= eventTypes[i].event_type_label %><br />
+                    <% } %>
+                </p>
+
+                <p>
+                    <%if (!teamEvents) { %>
+                        There is no event for your team yet, come later !
+                    <% } %>
+                </p>
+            </div>
+
+            <% for (i = 0; i < teamEvents.length; i++) { %>
+                <div class="box diary-box <%= teamEvents[i].color %>">
+                    <div class="diary-date">
+                            <%= teamEvents[i].date.toLocaleDateString("en-US", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}) %>
+                            <span class="hour">
+                                <i class="fa fa-clock-o"></i>
+                                <%= teamEvents[i].date.toLocaleTimeString("en-US", {hour: '2-digit', minute:'2-digit'}) %>
+                            </span>
+                    </div>
+    
+                    <p>
+                        <%= teamEvents[i].text %>
+                    </p>
+                </div>
+            <% } %>
+        </div>
+    </body>
+</html>

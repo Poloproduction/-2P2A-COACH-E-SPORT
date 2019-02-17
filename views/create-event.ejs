@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include partials/global-head.ejs %>
+    </head>
+
+    <body>
+        <div class="wrap">
+            <!-- NAVIGATION -->
+            <%- include partials/header.ejs %>
+            <!-- NAVIGATION -->
+
+            <div class="box">
+                <h2>Create an event: </h2>
+
+                <a href="/diary" class="right-button">Back to diary</a>
+
+                <form method="post" action="/create-event">
+                    <label for="date">Date (format yyyy-mm-dd hh:mm:ss):</label>
+                    <input type="text" name="date" id="date" class="input" required/>
+
+                    <label for="description">Event description (without line break):</label>
+                    <textarea name="description" id="description" class="textarea" required></textarea>
+
+                    <label for="type">Event type:</label>
+                    <select id="type" class="input" name="type">
+                        <option>Select an event</option>
+                        <% for (i = 0; i < eventTypes.length; i++) { %>
+                        <option value="<%= eventTypes[i].event_type_id %>"><%= eventTypes[i].event_type_label %></option>
+                        <% } %>
+                    </select>
+
+                    <button type="submit" class="button">Create event</button>
+                </form>
+            </div>
+    </body>
+</html>

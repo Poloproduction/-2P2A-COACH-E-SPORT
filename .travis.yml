@@ -8,6 +8,7 @@ before_script:
 - psql -c "CREATE USER posttgres WITH PASSWORD 'mysecretpassword';" -U postgres
 - psql -U postgres -d postgres -a -f ./createUsers.sql
 - psql -U postgres -d postgres -a -f ./createTeam.sql
+- psql -U postgres -d postgres -a -f ./createEvents.sql
 script:
 - yarn
 - yarn test --forceExit

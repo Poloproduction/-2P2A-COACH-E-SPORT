@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include partials/global-head.ejs %>
+        <link rel="stylesheet" href="/public/css/team.min.css" />
+        <script src="/public/js/jquery.min.js"></script>
+    </head>
+
+    <body>
+        <div class="wrap">
+            <!-- NAVIGATION -->
+            <%- include partials/header.ejs %>
+            <!-- NAVIGATION -->
+
+            <div class="box-container">
+                <div class="box">
+                    <h2>Upgrade <%= userData[0].team.name %></h2>
+
+                    <form method="post" action="/pay">
+                        <div class="radio">
+                            <p>You team has currently <b><%= offerName %></b> offer. Please select the new offer you want to subscribe:</p>
+                            
+                            <%if (userData[0].team.offer == 1) { %>
+                            <div class="offer-box silver">
+                                <input type="radio" id="silver" class="offer" name="upgrade" value="2" />
+                                <label for="silver"><strong>Silver</strong> (up to 10 members) <small>- only <s>100$</s> 80$ for your entire life !</small></label>
+                            </div>
+                            <% } %>
+    
+                            <div class="offer-box gold">
+                                <input type="radio" id="gold" class="offer" name="upgrade" value="3" />
+                                <label for="gold"><strong>Gold</strong> (as many members as you want) <small>- only 350$ for your entire life !</small></label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="button">Upgrade your team</button>
+                    </form>
+                </div>
+            </div>
+
+            <script src="/public/js/create-team.min.js"></script>
+    </body>
+</html>

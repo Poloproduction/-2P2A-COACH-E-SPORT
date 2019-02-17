@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>My Fortnite Coach</title>
-        <link rel="stylesheet" href="/public/css/global.css" />
-        <link rel="stylesheet" href="/public/css/team.css" />
-        <link rel="stylesheet" href="/public/css/alert.css" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-        <link rel="icon" type="image/x-icon" href="/public/img/favicon.png">
-        <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+        <%- include partials/global-head.ejs %>
+        <link rel="stylesheet" href="/public/css/team.min.css" />
+        <script src="/public/js/jquery.min.js"></script>
     </head>
 
     <body>
@@ -16,36 +12,34 @@
             <%- include partials/header.ejs %>
             <!-- NAVIGATION -->
 
-            <div class="box-container">
-                <div class="box">
-                    <h2>Create a team: </h2>
+            <div class="box">
+                <h2>Create a team: </h2>
 
-                    <form method="post" action="/pay">
-                        <label for="name">Team name:</label>
-                        <input type="text" name="name" id="name" class="input" required/>
+                <form method="post" action="/pay">
+                    <label for="name">Team name:</label>
+                    <input type="text" name="name" id="name" class="input" required/>
 
-                        <div class="radio">
-                            <p>Select an offer:</p>
+                    <div class="radio">
+                        <p>Select an offer:</p>
 
-                            <div class="offer-box bronze">
-                                <input type="radio" id="bronze" class="offer" name="offer" value="1" checked/>
-                                <label for="bronze"><strong>Bronze</strong> (1 to 5 members) <small>- only 35€ for your entire life !</small></label>
-                            </div>
-                            
-                            <div class="offer-box silver">
-                                <input type="radio" id="silver" class="offer" name="offer" value="2" />
-                                <label for="silver"><strong>Silver</strong> (6 to 10 members) <small>- only 100€ for your entire life !</small></label>
-                            </div>
-    
-                            <div class="offer-box gold">
-                                <input type="radio" id="gold" class="offer" name="offer" value="3" />
-                                <label for="gold"><strong>Gold</strong> (From 10 members) <small>- only 350€ for your entire life !</small></label>
-                            </div>
+                        <div class="offer-box bronze">
+                            <input type="radio" id="bronze" class="offer" name="offer" value="1" checked/>
+                            <label for="bronze"><strong>Bronze</strong> (up to 5 members) <small>- only 35$ for your entire life !</small></label>
+                        </div>
+                        
+                        <div class="offer-box silver">
+                            <input type="radio" id="silver" class="offer" name="offer" value="2" />
+                            <label for="silver"><strong>Silver</strong> (up to 10 members) <small>- only 100$ for your entire life !</small></label>
                         </div>
 
-                        <button type="submit" class="button">Create your team</button>
-                    </form>
-                </div>
+                        <div class="offer-box gold">
+                            <input type="radio" id="gold" class="offer" name="offer" value="3" />
+                            <label for="gold"><strong>Gold</strong> (as many members as you want) <small>- only 350$ for your entire life !</small></label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="button">Create your team</button>
+                </form>
             </div>
 
             <script src="/public/js/create-team.min.js"></script>

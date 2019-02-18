@@ -23,7 +23,9 @@
         <li <%if (title === 'Stats') { %>class="active"<% } %>><a href="/stats">See users statistics</a></li>
         <%if (userData) { %>
             <li class="right"><a href="/logout">Déconnexion</a></li>
+            <%if (userData[0].team.id) { %>
             <li class="<%if (title === 'My Diary') { %>active <% } %>right"><a href="/diary">My Diary</a>
+            <% } %>
             <li class="<%if (title === 'Account') { %>active <% } %>right"><a href="/account">My account</a></li>
         <% } else { %>
             <li class="
